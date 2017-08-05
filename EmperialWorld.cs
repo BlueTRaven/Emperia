@@ -57,14 +57,14 @@ namespace Emperia
 			{
 				int x2;
 				int y2;
-				for (int x = 0; x < 20; ++x)
+				for (int x1 = 0; x1 < 20; ++x1)
 				{
-					x2 = WorldGen.genRand.Next(1000, Main.maxsX - 1000);
-					y2 = Main.maxsY / 10;
+					x2 = WorldGen.genRand.Next(1000, Main.maxTilesX - 1000);
+					y2 = Main.maxTilesY / 10;
 					WorldGen.TileRunner(x2, y2, (double)5, 1, mod.TileType("Aetherium"), true, 0f, 0f, true, true);
 				}
-				int x = WorldGen.genRand.Next(300, Main.maxsX - 1000);
-                int y = Main.maxsY / 9;
+				int x = WorldGen.genRand.Next(300, Main.maxTilesX - 1000);
+                int y = Main.maxTilesY / 9;
 			    for (int x3 = x; x3 < x + 350; x3++)
 			    {
 				    WorldGen.TileRunner(x3, y, (double)20, 1, mod.TileType("TwilightGrass"), true, 0f, 0f, true, true);
