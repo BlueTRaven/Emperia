@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="14.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{8298EAB6-0586-4BDA-9483-83624B66B13A}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Emperia</RootNamespace>
+    <AssemblyName>Emperia</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Accessories\GraniteShield.cs" />
+    <Compile Include="Accessories\MarbleShield.cs" />
+    <Compile Include="Armor\GraniteChestplate.cs" />
+    <Compile Include="Armor\GraniteHelmet.cs" />
+    <Compile Include="Armor\GraniteLeggings.cs" />
+    <Compile Include="Armor\MarbleBreastplate.cs" />
+    <Compile Include="Armor\MarbleGrieves.cs" />
+    <Compile Include="Armor\MarbleHelmet.cs" />
+    <Compile Include="Bosses\AntBoss.cs" />
+    <Compile Include="Bosses\Inquisitor\AgonyMask.cs" />
+    <Compile Include="Bosses\Inquisitor\DEPuppet.cs" />
+    <Compile Include="Bosses\Inquisitor\DryadPuppet.cs" />
+    <Compile Include="Bosses\Inquisitor\GuidePuppet.cs" />
+    <Compile Include="Bosses\Inquisitor\Inquisitor.cs" />
+    <Compile Include="Bosses\Inquisitor\NursePuppet.cs" />
+    <Compile Include="Bosses\Mushor\MushMinionShootNoExplosionTest1.cs" />
+    <Compile Include="Bosses\Mushor\Mushor.cs" />
+    <Compile Include="Bosses\Mushor\MushorMinionExplode.cs" />
+    <Compile Include="Bosses\Mushor\MushorMinionExplodeDummy.cs" />
+    <Compile Include="Bosses\Mushor\MushorMinionShield.cs" />
+    <Compile Include="Bosses\Pandora\Brood.cs" />
+    <Compile Include="Bosses\Pandora\Helious.cs" />
+    <Compile Include="Bosses\Pandora\Infurion.cs" />
+    <Compile Include="Bosses\Pandora\PandorasBox.cs" />
+    <Compile Include="Bosses\Pandora\PandorasBoxOpening.cs" />
+    <Compile Include="Bosses\Pandora\Xalaneth.cs" />
+    <Compile Include="Buffs\Drowning.cs" />
+    <Compile Include="Buffs\Enchanted.cs" />
+    <Compile Include="Buffs\Spored.cs" />
+    <Compile Include="Buffs\WoodSpiritBuff.cs" />
+    <Compile Include="Drops\EssenceDrop.cs" />
+    <Compile Include="Dusts\CursedFlame.cs" />
+    <Compile Include="Emperia.cs" />
+    <Compile Include="EmperialWorld.cs" />
+    <Compile Include="GlobalNPC1.cs" />
+    <Compile Include="Items\RottenMushroom.cs" />
+    <Compile Include="Items\RuinedChest.cs" />
+    <Compile Include="Items\RuinedKey.cs" />
+    <Compile Include="Materials\DesertBar.cs" />
+    <Compile Include="Materials\GraniteBar.cs" />
+    <Compile Include="Materials\GraniteCore.cs" />
+    <Compile Include="Materials\HellEssence.cs" />
+    <Compile Include="Materials\IceShard.cs" />
+    <Compile Include="Materials\MarbleBar.cs" />
+    <Compile Include="Materials\MarbleCore.cs" />
+    <Compile Include="Materials\OceanEssence.cs" />
+    <Compile Include="Materials\SkyBar.cs" />
+    <Compile Include="Materials\VultureFeather.cs" />
+    <Compile Include="Minions\WoodSpirit\WoodSpirit.cs" />
+    <Compile Include="MyPlayer.cs" />
+    <Compile Include="NPCsInfo.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_036C0B5B-1481-4323-8D20-8F5ADCB23D92.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_5937a670-0e60-4077-877b-f7221da3dda1.cs" />
+    <Compile Include="obj\Debug\TemporaryGeneratedFile_E7A71F73-0F8D-4B9B-B56E-8E70B10BC5D3.cs" />
+    <Compile Include="Projectiles\Cerith.cs" />
+    <Compile Include="Projectiles\DelayedLaser.cs" />
+    <Compile Include="Projectiles\EnchantedArrow.cs" />
+    <Compile Include="Projectiles\EnchantedBall.cs" />
+    <Compile Include="Projectiles\EnchantedBullet.cs" />
+    <Compile Include="Projectiles\EnchantedChakram.cs" />
+    <Compile Include="Projectiles\ExplodeMushroom.cs" />
+    <Compile Include="Projectiles\FearBolt.cs" />
+    <Compile Include="Projectiles\Flame.cs" />
+    <Compile Include="Projectiles\FlamingScythe.cs" />
+    <Compile Include="Projectiles\GoblinGlaive.cs" />
+    <Compile Include="Projectiles\KhopeshProj.cs" />
+    <Compile Include="Projectiles\MechaLaser.cs" />
+    <Compile Include="Projectiles\OceanWave.cs" />
+    <Compile Include="Projectiles\Seed.cs" />
+    <Compile Include="Projectiles\Seed2.cs" />
+    <Compile Include="Projectiles\Seed3.cs" />
+    <Compile Include="Projectiles\SmallLaser.cs" />
+    <Compile Include="Projectiles\WateryBoom.cs" />
+    <Compile Include="Projectiles\YoyoProjectile.cs" />
+    <Compile Include="Tiles\RuinedChest.cs" />
+    <Compile Include="Tools\GraniteHamaxe.cs" />
+    <Compile Include="Tools\GranitePickaxe.cs" />
+    <Compile Include="Tools\MarbleHamaxe.cs" />
+    <Compile Include="Tools\MarblePickaxe.cs" />
+    <Compile Include="Tools\SkyHamaxe.cs" />
+    <Compile Include="Tools\SkyPick.cs" />
+    <Compile Include="Utility\RandomHelper.cs" />
+    <Compile Include="Utility\VectorHelper.cs" />
+    <Compile Include="Weapons\AntlionBow.cs" />
+    <Compile Include="Weapons\BulbousStaff.cs" />
+    <Compile Include="Weapons\CursedThrower.cs" />
+    <Compile Include="Weapons\DesertKhopesh.cs" />
+    <Compile Include="Weapons\DesertStaff.cs" />
+    <Compile Include="Weapons\EbonflameRepeater.cs" />
+    <Compile Include="Weapons\EnchantedChakram.cs" />
+    <Compile Include="Weapons\Enchanted\EnchantedArrow.cs" />
+    <Compile Include="Weapons\Enchanted\EnchantedBow.cs" />
+    <Compile Include="Weapons\Enchanted\EnchantedBullet.cs" />
+    <Compile Include="Weapons\Enchanted\EnchantedGun.cs" />
+    <Compile Include="Weapons\Enchanted\EnchantedSword.cs" />
+    <Compile Include="Weapons\FleshRenderer.cs" />
+    <Compile Include="Weapons\GoblinGlaive.cs" />
+    <Compile Include="Weapons\GraniteBow.cs" />
+    <Compile Include="Weapons\GraniteSword.cs" />
+    <Compile Include="Weapons\MarbleSword.cs" />
+    <Compile Include="Weapons\MechaBlade.cs" />
+    <Compile Include="Weapons\OceanicBlade.cs" />
+    <Compile Include="Weapons\SkyBlade.cs" />
+    <Compile Include="Weapons\TideStaff.cs" />
+    <Compile Include="Weapons\TreeSpiritStaff.cs" />
+    <Compile Include="Weapons\Enchanted\EnchantedInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="BigText">
+      <HintPath>..\BigText\bin\Debug\BigText.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_32\Microsoft.Xna.Framework\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_32\Microsoft.Xna.Framework.Game\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Game.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_32\Microsoft.Xna.Framework.Graphics\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Graphics.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Xna.Framework.Xact, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_32\Microsoft.Xna.Framework.Xact\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.Xact.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="Terraria">
+      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\terraria\Terraria.exe</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>"C:\Program Files (x86)\Steam\steamapps\common\terraria\Terraria.exe" -build "$(ProjectDir)\" -eac "$(TargetPath)"</PostBuildEvent>
+  </PropertyGroup>
+</Project>

@@ -1,0 +1,9 @@
+author = TODO COLLAB NAMES
+version = 1.0.0.0
+displayName = Emperia
+homepage = http://forums.terraria.org/index.php?threads/1-3-tmodloader-a-modding-api.23726/
+hideCode = true
+hideResources = true
+includeSource = false
+buildIgnore = *.csproj, *.user, obj\*, bin\*, .vs\*
+includePDB = false
