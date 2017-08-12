@@ -52,67 +52,17 @@ namespace Emperia
 		}
 		public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
 		{
-			int genIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Micro Biomes"));
+			int genIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Final Cleanup"));
 			tasks.Insert(genIndex + 1, new PassLegacy("Twilight Forest", delegate (GenerationProgress progress)
 			{
-				int x2;
-				int y2;
-				for (int x1 = 0; x1 < 20; ++x1)
-				{
-					x2 = WorldGen.genRand.Next(1000, Main.maxTilesX - 1000);
-					y2 = Main.maxTilesY / 10;
-					WorldGen.TileRunner(x2, y2, (double)5, 1, mod.TileType("Aetherium"), true, 0f, 0f, true, true);
-				}
-				int x = WorldGen.genRand.Next(300, Main.maxTilesX - 1000);
-                int y = Main.maxTilesY / 9;
-			    for (int x3 = x; x3 < x + 350; x3++)
-			    {
-				    WorldGen.TileRunner(x3, y, (double)20, 1, mod.TileType("TwilightGrass"), true, 0f, 0f, true, true);
-				    if (Main.rand.Next(25) == 0)
-				    {
-					    WorldGen.TileRunner(x3, y - 5, (double)20, 1, mod.TileType("TwilightGrass"), true, 0f, 0f, true, true);
-				    }
-					if (Main.rand.Next(5) == 0)
-				    {
-					    WorldGen.TileRunner(x3, y + 7, (double)20, 1, mod.TileType("TwilightGrass"), true, 0f, 0f, true, true);
-				    }
-				}
-			
-				for (int x4 = x - 2; x4 < x + 352; x4++)
-				{
-					for (int y3 = y + 12; y3 > y - 14; y3--)
-					{
-						if (y3 == y - 13)
-						{
-							if (Main.rand.Next(2) == 0)
-							{
-							WorldGen.KillWall(x4, y3);
-							WorldGen.PlaceWall(x4, y3, 65);
-							}
-						}
-						else if (y3 == y - 14)
-						{
-							if (Main.rand.Next(2) == 0 && Main.tile[x4, y3 + 1].wall != 0)
-							{
-								WorldGen.KillWall(x4, y3);
-								WorldGen.PlaceWall(x4, y3, 65);
-							}
-						}
-						else
-						{
-							WorldGen.KillWall(x4, y3);
-							WorldGen.PlaceWall(x4, y3, 65);
-						}
-						if (Main.tile[x4, y3 - 1].type != mod.TileType("TwilightGrass") && Main.rand.Next(7) == 0)
-						{
-							WorldGen.PlaceObject(x4,y3-1,mod.TileType("TwilightTreeSap"));
-							WorldGen.GrowTree(x4, y3 - 1);
-						}
-			
-						
-						
-					}
-				}
+				 progress.Message = "Twilight Forest";
+                int XTILE = WorldGen.genRand.Next(125, Main.maxTilesX - 350);
+                int yAxis = Main.maxTilesY / 13;
+                int num = Main.rand.Next(20,30);
+                for (int g = 0; g <= num; g++)
+                {
+                    WorldMethods.Island(XTILE + Main.rand.Next(-350, 350), yAxis + Main.rand.Next(-20, 55), Main.rand.Next(26, 35), (float)(Main.rand.Next(11, 25) / 10), (ushort)mod.TileType("TwilightGrass"));
+                }
 		    }));
 		}
 
