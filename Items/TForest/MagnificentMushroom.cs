@@ -8,7 +8,7 @@ using Terraria.ModLoader;
 
 using Emperia.Bosses.Mushor;
 
-namespace Emperia.Items
+namespace Emperia.Items.TForest
 {
 	
     public class MagnificentMushroom : ModItem

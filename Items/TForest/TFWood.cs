@@ -1,12 +1,12 @@
 using Terraria.ModLoader;
 
-namespace Emperia.Items
+namespace Emperia.Items.TForest
 {
-	public class TFLeaf : ModItem
+	public class TFWood : ModItem
 	{
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Leaf");
+			DisplayName.SetDefault("Wood");
 		}
 		public override void SetDefaults()
 		{
@@ -20,7 +20,7 @@ namespace Emperia.Items
 			item.useStyle = 1;
 			item.consumable = false;			
 			item.rare = 4;
-			item.createTile = mod.TileType("TFLeaf");
+			item.createTile = mod.TileType("TFWood");
 			item.placeStyle = 0;
 		}
 	}
