@@ -37,6 +37,13 @@ namespace Emperia.Drops
 				{
 				
 				}
+				if(npc.type >= 381 && npc.type <= 392)
+				{
+					if (Main.rand.Next(50) == 0)
+					{
+						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("CosmicObliterator"), 1);
+					}
+				}
 				if(npc.type == 84)
 				{
 					 if (Main.rand.Next(4) == 0) 

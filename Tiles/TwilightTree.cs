@@ -23,7 +23,7 @@ namespace Emperia.Tiles
 		}
 		public override int DropWood()
 		{
-			return mod.ItemType("BigWood");
+			return mod.ItemType("YuleLog");
 		}
 		
 		public override Texture2D GetTexture()

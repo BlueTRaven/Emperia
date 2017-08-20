@@ -29,6 +29,7 @@ namespace Emperia.Weapons //where is located
             item.value = 100;        
             item.rare = 10;
 			item.scale = 1f;
+			item.UseSound = SoundID.Item18;
 			item.shoot = mod.ProjectileType("BlueSword");
 			item.shootSpeed = 8f;
             item.autoReuse = true;   //if it's capable of autoswing.
@@ -60,7 +61,7 @@ namespace Emperia.Weapons //where is located
 	    	num78 *= num80;
 			num79 *= num80;
 			int num112 = 3;
-			for (int num113 = 0; num113 < num112; num113++) 
+			for (int num113 = 0; num113 < 2; num113++) 
 			{
 				vector2 = new Vector2(player.position.X + (float)player.width * 0.5f + (float)(Main.rand.Next(101) * -(float)player.direction) + ((float)Main.mouseX + Main.screenPosition.X - player.position.X), player.MountedCenter.Y - 600f);
 				vector2.X = (vector2.X + player.Center.X) / 2f + (float)Main.rand.Next(-100, 101);

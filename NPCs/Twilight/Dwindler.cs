@@ -126,7 +126,7 @@ namespace Emperia.NPCs.Twilight
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
         {
 			Player player = spawnInfo.player;
-			return spawnInfo.player.GetModPlayer<MyPlayer>(mod).ZoneTwilight ? 8f : 0f;
+			return spawnInfo.player.GetModPlayer<MyPlayer>(mod).ZoneTwilight ? 6f : 0f;
         }
     }
 }

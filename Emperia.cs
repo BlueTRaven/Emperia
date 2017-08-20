@@ -49,6 +49,10 @@ namespace Emperia
             {
                 music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/Bloom");
             }
+			if (Main.player[Main.myPlayer].active && Main.player[Main.myPlayer].GetModPlayer<MyPlayer>(this).ZoneTwilight && !Main.gameMenu)
+            {
+                music = this.GetSoundSlot(SoundType.Music, "Sounds/Music/TForest");
+            }
         }
         /// <summary>
         /// Gets the entity nearest to the given vector.

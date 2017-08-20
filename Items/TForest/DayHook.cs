@@ -37,6 +37,14 @@ namespace Emperia.Items.TForest
 			item.shootSpeed = 17f; // how quickly the hook is shot.
 			item.shoot = mod.ProjectileType("DayHookProjectile");
 		}
+		public override void AddRecipes()
+        {
+            ModRecipe recipe = new ModRecipe(mod);
+			recipe.AddIngredient(null, "YuleLog", 30);
+			recipe.AddIngredient(null, "BehexedLeaf", 30);
+            recipe.SetResult(this);
+            recipe.AddRecipe();
+        }
 	}
 	class DayHookProjectile : ModProjectile
 	{
@@ -78,6 +86,7 @@ namespace Emperia.Items.TForest
 			}
 			return true;
 		}
+		
 
 		// Return true if it is like: Hook, CandyCaneHook, BatHook, GemHooks
 		//public override bool? SingleGrappleHook(Player player)

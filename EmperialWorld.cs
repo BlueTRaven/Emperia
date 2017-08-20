@@ -55,6 +55,7 @@ namespace Emperia
 			int genIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Final Cleanup"));
 			tasks.Insert(genIndex + 1, new PassLegacy("Twilight Forest", delegate (GenerationProgress progress)
 			{
+		
 				 progress.Message = "Twilight Forest";
                 int XTILE = WorldGen.genRand.Next(125, Main.maxTilesX - 350);
                 int yAxis = Main.maxTilesY / 13;
@@ -63,6 +64,7 @@ namespace Emperia
                 {
                     WorldMethods.Island(XTILE + Main.rand.Next(-350, 350), yAxis + Main.rand.Next(-20, 55), Main.rand.Next(26, 35), (float)(Main.rand.Next(11, 25) / 10), (ushort)mod.TileType("TwilightGrass"));
                 }
+				WorldMethods.Island(XTILE, yAxis, Main.rand.Next(60, 75), (float)(Main.rand.Next(6, 17) / 10), (ushort)mod.TileType("TwilightGrass"));
 		    }));
 		}
 
