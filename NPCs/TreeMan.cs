@@ -29,7 +29,6 @@ namespace Emperia.NPCs
             npc.height = 66;
             npc.value = Item.buyPrice(0, 15, 0, 0);
             npc.npcSlots = 0f;
-            npc.boss = true;
             npc.lavaImmune = true;
             npc.noGravity = true;
             npc.noTileCollide = true;
