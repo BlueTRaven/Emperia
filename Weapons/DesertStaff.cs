@@ -37,7 +37,7 @@ namespace Emperia.Weapons
             item.knockBack = 5;      
             item.value = 100;        
             item.rare = 10;
-			item.shoot = mod.ProjectileType("TestyCool"); 
+			item.shoot = mod.ProjectileType("SolarBlast"); 
 			item.shootSpeed = 8f;
             item.autoReuse = false;   
             item.useTurn = true;                            
