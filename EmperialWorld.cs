@@ -65,6 +65,34 @@ namespace Emperia
                     WorldMethods.Island(XTILE + Main.rand.Next(-350, 350), yAxis + Main.rand.Next(-20, 55), Main.rand.Next(26, 35), (float)(Main.rand.Next(11, 25) / 10), (ushort)mod.TileType("TwilightGrass"));
                 }
 				WorldMethods.Island(XTILE, yAxis, Main.rand.Next(60, 75), (float)(Main.rand.Next(6, 17) / 10), (ushort)mod.TileType("TwilightGrass"));
+				for (int trees = 0; trees < 5000; trees++)
+					{
+						int E = XTILE + Main.rand.Next(-350, 350);
+						int F = yAxis + Main.rand.Next(-20, 55);
+						Tile tile = Framing.GetTileSafely(E, F);
+						if (tile.type == mod.TileType("TwilightGrass"))
+						{
+							WorldGen.GrowTree(E, F);
+						}
+					}
+					
+					int x;
+					int y;
+					int maxTries = 20000;
+					int tries = 0;
+					int successes = 0;
+
+					
+					while (tries < maxTries && successes < 10)
+					{
+						x = XTILE + Main.rand.Next(-350, 350);
+						y = yAxis + Main.rand.Next(-20, 55);
+						if (WorldGen.PlaceChest(x, y, (ushort)mod.TileType<Tiles.TwiChest>(), false, 0) != -1)
+						{
+							successes++;
+						}
+						tries++;
+					}
 		    }));
 		}
 
