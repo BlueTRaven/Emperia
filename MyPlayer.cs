@@ -33,12 +33,14 @@ namespace Emperia
 		public int rofIncrease = 0;
 		public bool slightKnockback = false;
 		public static bool theWorld = false;
+		public bool skullLightPet = false;
 		int damageCount = 0;
 		int counter = 0;
 
         public override void ResetEffects()
         {
             wSpirit = false;
+			skullLightPet = false;
             enchanted = false;
 			Fortress = false;
 			Storm = false;

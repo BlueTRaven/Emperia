@@ -40,7 +40,7 @@ namespace Emperia.Tiles.herbs
 			if (stage == 2)
 			{
 				//Item.NewItem(i * 16, j * 16, 0, 0, mod.ItemType<Items.ChestnutSeeds>(), Main.rand.Next(1, 3));
-				//Item.NewItem(i * 16, j * 16, 0, 0, mod.ItemType<Items.SunsoakedChestnut>());
+				Item.NewItem(i * 16, j * 16, 0, 0, mod.ItemType<Items.SunsoakedChestnut>());
 			}
 			return false;
 		}

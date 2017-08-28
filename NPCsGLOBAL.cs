@@ -24,7 +24,15 @@ namespace Emperia
         } 
 		
 		public override bool InstancePerEntity {get{return true;}}
-		
+		public override void SetupShop(int type, Chest shop, ref int nextSlot)
+		{
+			if (type == NPCID.Dryad)
+			{
+				shop.item[nextSlot].SetDefaults(mod.ItemType<Items.ChestnutSeeds>());
+				nextSlot++;
+
+			}
+		}
         public override void UpdateLifeRegen(NPC npc, ref int damage)
         {
             if (customdebuff2)  //this tells the game to use the public bool customdebuff from NPCsINFO.cs
