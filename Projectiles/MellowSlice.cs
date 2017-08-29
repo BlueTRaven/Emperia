@@ -54,7 +54,7 @@ namespace Emperia.Projectiles
 		
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
 		{
-			target.AddBuff(mod.BuffType("MellowDebuff"), 180, false);
+			target.AddBuff(mod.BuffType("MellowDebuff"), 1200, false);
 		}
 	}
 }

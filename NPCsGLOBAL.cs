@@ -13,12 +13,15 @@ namespace Emperia
 		public bool Plague = false;
 		public bool Immolate = false;
 		public bool StormCharge = false;
+		public bool mellowed = false;
+		public int HitTimer = 0;
         public override void ResetEffects(NPC npc)
         {
             customdebuff = false;
 			customdebuff2 = false;
 			ConsumeDark = false;
 			Plague = false;
+			mellowed = false;
 			Immolate = false;
 			StormCharge = false;
         } 
@@ -105,5 +108,38 @@ namespace Emperia
 				npc.defense = (int)(npc.defense * 0.75);
             }
         }
+		public override void PostAI(NPC npc)
+		{
+			
+			if (mellowed)
+			{
+				HitTimer++;
+				
+				if (HitTimer >= 300)
+				{
+					int jim = npc.lifeMax / 4;
+					int damage = 0;
+					if (jim >= 150)
+					{
+						damage = 150;
+					}
+					else
+					{
+						damage = jim;
+						
+					}
+					Main.NewText(damage + " verifying", 39, 86, 134, true);
+					//npc.HitEffect(damage);
+					npc.life -= damage;
+					HitTimer = 0;
+				}
+			}
+			
+			
+		}
+		public override void OnHitPlayer(NPC npc, Player target, int damage, bool crit)
+		{
+			HitTimer = 0;
+		}
     }
 }
