@@ -21,7 +21,7 @@ namespace Emperia.NPCs.Twilight
         public override void SetDefaults()
         {
             npc.aiStyle = -1;
-            npc.lifeMax = 432;
+            npc.lifeMax = 120;
             npc.damage = 15;
             npc.defense = 7;
             npc.knockBackResist = 0f;

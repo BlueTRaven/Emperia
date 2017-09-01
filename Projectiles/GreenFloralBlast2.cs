@@ -27,7 +27,7 @@ namespace Emperia.Projectiles
             projectile.width = 25;
             projectile.height = 25;
             projectile.friendly = true;
-            projectile.thrown = true;
+            projectile.magic = true;
             projectile.penetrate = 1;
             projectile.aiStyle = 2;
             projectile.timeLeft = 180;

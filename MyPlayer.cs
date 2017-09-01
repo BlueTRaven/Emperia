@@ -35,6 +35,7 @@ namespace Emperia
 		public bool slightKnockback = false;
 		public static bool theWorld = false;
 		public bool skullLightPet = false;
+		public bool mystiqueSetBonus = false;
 		int damageCount = 0;
 		int counter = 0;
 
@@ -57,6 +58,7 @@ namespace Emperia
 			doubleCrit = false;
 			damageAvoid = false;
 			theWorld = false;
+			mystiqueSetBonus = false;
         }
 
         public override void PostUpdate()
@@ -194,6 +196,20 @@ namespace Emperia
 			if (slightKnockback)
 			{
 				knockback *= 1.1f;
+			}
+		}
+		public override void OnHitNPC (Item item, NPC target, int damage, float knockback, bool crit)
+		{
+			if (mystiqueSetBonus)
+			{
+				Projectile.NewProjectile(target.Center.X, target.Center.Y, 0, 0, mod.ProjectileType("HealingProjectile"), 14, 0, player.whoAmI, ai1: 36);
+			}
+		}
+		public override void OnHitNPCWithProj (Projectile projectile, NPC target, int damage, float knockback, bool crit)
+		{
+			if (mystiqueSetBonus && projectile.magic || projectile.melee)
+			{
+				Projectile.NewProjectile(target.Center.X, target.Center.Y, 0, 0, mod.ProjectileType("HealingProjectile"), 14, 0, player.whoAmI, ai1: 36);
 			}
 		}
 		public override bool PreHurt(bool pvp,bool quiet,ref int damage,ref int hitDirection,ref bool crit,ref bool customDamage,ref bool playSound,ref bool genGore,ref PlayerDeathReason damageSource)
