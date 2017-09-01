@@ -28,6 +28,7 @@ namespace Emperia
 		public bool damageAvoid = false;
         public int enchantedStacks;
 		public bool ZoneTwilight = false;
+		public bool ZoneCanyon = false;
 		public bool doubleCrit = false;
 		public int points = 0;
 		public int rofIncrease = 0;
@@ -93,6 +94,7 @@ namespace Emperia
 		public override void UpdateBiomes()
 		{
 			ZoneTwilight = (EmperialWorld.twilightTiles > 50);
+			ZoneCanyon = (EmperialWorld.CanyonTiles > 100);
 		}
 		public override void UpdateBiomeVisuals()
 		{

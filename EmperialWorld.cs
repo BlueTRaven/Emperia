@@ -25,6 +25,7 @@ namespace Emperia
 	*/
 		public static bool downedMushor = false;
 		public static int twilightTiles = 0;
+		public static int CanyonTiles = 0;
 		public override void Initialize()
 		{
 			downedMushor = false;
@@ -45,11 +46,78 @@ namespace Emperia
 		{
 			MyPlayer modPlayer = Main.LocalPlayer.GetModPlayer<MyPlayer>(mod);
 			twilightTiles = 0;
+			CanyonTiles = 0;
 		}
 		public override void TileCountsAvailable(int[] tileCounts)
 		{
 			twilightTiles = tileCounts[mod.TileType("TwilightGrass")];
+			CanyonTiles = tileCounts[mod.TileType("CanyonRock")];
 		}
+		
+		static bool CanyonPlacement(int x, int y)
+        {
+            if (x > ((Main.maxTilesX / 2) - 200) && x < ((Main.maxTilesX / 2) + 200))
+            {
+                return false;
+            }
+			if (x < 500 || x > Main.maxTilesX - 500)
+			{
+				return false;
+			}
+            for (int i = x - 32; i < x + 32; i++)
+            {
+                for (int j = y - 32; j < y + 32; j++)
+                {
+                    int[] TileArray = { TileID.BlueDungeonBrick, TileID.GreenDungeonBrick, TileID.PinkDungeonBrick, TileID.Cloud, TileID.RainCloud, 147, 60, 40, 199, 23, 25, 203 };
+                    for (int ohgodilovememes = 0; ohgodilovememes < TileArray.Length - 1; ohgodilovememes++)
+                    {
+                        if (Main.tile[i, j].type == (ushort)TileArray[ohgodilovememes])
+                        {
+                            return false;
+                        }
+                    }
+                }
+            }
+            return true;
+        }
+		
+		 public void PlaceCanyon(int x, int y)
+        {
+			WorldMethods.TileRunner(x, y, (double)200, 1, mod.TileType("CanyonRock"), false, 0f, 0f, true, true); //improve basic shape later
+			
+			WorldMethods.RoundHole(x, y - 20, 60, 30, 10, true);
+			for (int i = 0; i < 3; i++)
+			{
+				int Ex = Main.rand.Next(-35,35);
+				int height = Main.rand.Next(30, 80);
+				int BaseWidth = Main.rand.Next(60,80);
+				int Sway = 0;
+				for (int j = 15; j < height; j++)
+				{
+					if (Main.rand.Next(4) == 0)
+					{
+						if (Main.rand.Next(2) == 0)
+						{
+							Sway -= 1;
+						}
+						else
+						{
+							Sway += 1;
+						}
+					}
+					WorldMethods.TileRunner((x + Ex) + Sway, (y + 10) + j, (double)25+ (BaseWidth / Math.Sqrt(j)), 1, mod.TileType("CanyonRock"), false, 0f, 0f, true, true); //improve basic shape later
+					WorldGen.digTunnel((x + Ex) + Sway, (y + 10) + j, 0,0, 3, (int)(BaseWidth / Math.Sqrt(j)), false);
+					/*for (int h = -10; h < 10; h++)
+					{
+						WorldGen.KillWall((x + Ex) + Sway + h, (y + 10) + j);
+								
+					}*/
+				}
+			}
+			
+			
+		}
+		
 		public override void ModifyWorldGenTasks(List<GenPass> tasks, ref float totalWeight)
 		{
 			int genIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Final Cleanup"));
@@ -94,6 +162,67 @@ namespace Emperia
 						tries++;
 					}
 		    }));
+			
+			  int ShiniesIndex = tasks.FindIndex(genpass => genpass.Name.Equals("Micro Biomes"));
+            if (ShiniesIndex == -1)
+            {
+                // Shinies pass removed by some other mod.
+                return;
+            }
+            tasks.Insert(ShiniesIndex + 1, new PassLegacy("Canyon", delegate (GenerationProgress progress)
+            {
+                progress.Message = "Carving canyons";
+                int X = 1;
+                int Y = 1;
+                float widthScale = (Main.maxTilesX / 4200f);
+                int numberToGenerate = 2;
+                for (int k = 0; k < numberToGenerate; k++)
+                {
+                    bool placement = false;
+                    bool placed = false;
+                    while (!placed)
+                    {
+                        bool success = false;
+                        int attempts = 0;
+                        while (!success)
+                        {
+                            attempts++;
+                            if (attempts > 1000)
+                            {
+                                success = true;
+                                continue;
+                            }
+                            int i = WorldGen.genRand.Next(200, Main.maxTilesX - 200);
+                            if (i <= Main.maxTilesX / 2 - 50 || i >= Main.maxTilesX / 2 + 50)
+                            {
+                                int j = 0;
+                                while (!Main.tile[i, j].active() && (double)j < Main.worldSurface)
+                                {
+                                    j++;
+                                }
+                                if (Main.tile[i, j].type == 53 || Main.tile[i, j].type == 0)
+                                {
+                                    j--;
+                                    if (j > 150)
+                                    {
+                                        placement = CanyonPlacement(i, j);
+                                        if (placement)
+                                        {
+                                            X = i;
+										//	progress.Message = "BAZINGA";
+                                            Y = j;
+                                            PlaceCanyon(i, j);
+                                            success = true;
+                                            placed = true;
+                                            continue;
+                                        }
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            }));
 		}
 
         public override void PostWorldGen()

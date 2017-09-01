@@ -72,7 +72,7 @@ namespace Emperia
         {
             if (initialdig)
             {
-                WorldGen.digTunnel(X, Y, 0, 0, strength, strength, false);
+                WorldGen.digTunnel(X, Y, 0, 0, strength * 4, strength * 4, false);
             }
             for (int rotation2 = 0; rotation2 < 350; rotation2++)
             {
@@ -147,10 +147,10 @@ namespace Emperia
                                 {
                                     Tile tile = Main.tile[k, l];
                                     bool flag3 = Main.tileStone[type] && tile.type != 1;
-                                    if (!TileID.Sets.CanBeClearedDuringGeneration[(int)tile.type])
+                                   /* if (!TileID.Sets.CanBeClearedDuringGeneration[(int)tile.type])
                                     {
                                         flag3 = true;
-                                    }
+                                    }*/
                                     ushort type2 = tile.type;
                                     if (type2 <= 147)
                                     {
@@ -168,13 +168,7 @@ namespace Emperia
                                                 flag3 = true;
                                             }
                                         }
-                                        else if (type2 != 53)
-                                        {
-                                            if (type2 == 147)
-                                            {
-                                                goto IL_575;
-                                            }
-                                        }
+                                        
                                         else
                                         {
                                             if (type == 40)
@@ -225,11 +219,10 @@ namespace Emperia
                                         }
                                     }
                                 IL_5B7:
-                                    if (!flag3)
-                                    {
+                                    
                                         tile.type = (ushort)type;
                                         goto IL_5C5;
-                                    }
+                                    
                                     goto IL_5C5;
                                 IL_575:
                                     flag3 = true;
