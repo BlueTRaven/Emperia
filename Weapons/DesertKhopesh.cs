@@ -10,7 +10,7 @@ namespace Emperia.Weapons
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Desert Khopesh");
-			Tooltip.SetDefault("Rumor has it that you can throw it");
+			Tooltip.SetDefault("Rumor has it you can throw it");
 		}
         public override void SetDefaults()
         {
@@ -23,10 +23,10 @@ namespace Emperia.Weapons
             item.useStyle = 1;
             item.knockBack = 6;
             item.value = 100;
-            item.rare = 8;
+            item.rare = 2;
             item.autoReuse = true;
             item.useTurn = true;
- 
+			item.UseSound = SoundID.Item1; 
  
         }
  

@@ -15,7 +15,7 @@ namespace Emperia.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Rotten Mushroom");
-			Tooltip.SetDefault("Ugh, it smells horrible.");
+			Tooltip.SetDefault("Ugh, it smells horrible. \n Used in the mushroom biome");
 		}
         public override void SetDefaults()
         {

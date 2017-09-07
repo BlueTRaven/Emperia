@@ -14,7 +14,7 @@ namespace Emperia.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Sunsoaked Chestnut");
-			Tooltip.SetDefault("");
+			Tooltip.SetDefault("Increases Movement speed, damage reduction and damage by 2%");
 		}
         public override void SetDefaults()
         {

@@ -15,6 +15,7 @@ namespace Emperia.Weapons //where is located
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Day's Verge");
+			Tooltip.SetDefault("Calls swords from the heavens on swings");
 		}
         public override void SetDefaults()
         {    //Sword name

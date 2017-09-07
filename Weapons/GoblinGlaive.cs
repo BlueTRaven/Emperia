@@ -34,5 +34,6 @@ public class GoblinGlaive : ModItem
 		item.rare = 2;  //Ranges from 1 to 11.
 		item.shoot = mod.ProjectileType("GoblinGlaive");
 		item.shootSpeed = 5f;
+		
 	}
 }}

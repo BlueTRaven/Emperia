@@ -34,7 +34,7 @@ public class GraniteHelmet : ModItem
 
     public override void UpdateArmorSet(Player player)
     {
-        player.setBonus = "6% damage reduction";
+        player.setBonus = "7% damage reduction";
         player.endurance += 0.06f;
     }
     
@@ -50,7 +50,7 @@ public class GraniteHelmet : ModItem
     public override void AddRecipes()
     {
         ModRecipe recipe = new ModRecipe(mod);
-        recipe.AddIngredient(null, "GraniteBar", 13);
+        recipe.AddIngredient(null, "GraniteBar", 8);
         recipe.AddTile(TileID.Anvils);
         recipe.SetResult(this);
         recipe.AddRecipe();

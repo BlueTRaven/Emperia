@@ -10,7 +10,7 @@ namespace Emperia.Accessories
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Granite Shield");
-			Tooltip.SetDefault("Made of real rock");
+			Tooltip.SetDefault("Made of real rock\n Increased invinicility frames duration");
 		}
 		public override void SetDefaults()
 		{
@@ -19,9 +19,12 @@ namespace Emperia.Accessories
 			item.value = 1000;
 			item.rare = 2;
 			item.accessory = true;
-			item.defense = 4;
+			item.defense = 3;
 		}
-
+		public override void UpdateAccessory(Player player, bool hideVisual)
+        {
+			player.immuneTime += 30;
+		}
 
 		public override void AddRecipes()
 		{

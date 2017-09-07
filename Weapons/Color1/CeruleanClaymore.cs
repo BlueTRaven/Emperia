@@ -13,6 +13,7 @@ namespace Emperia.Weapons.Color1   //where is located
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Cerulean Claymore");
+			Tooltip.SetDefault("Striking an enemy will increase melee damage for a short time");
 		}
         public override void SetDefaults()
         {     //Sword name

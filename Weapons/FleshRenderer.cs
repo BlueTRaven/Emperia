@@ -11,7 +11,7 @@ namespace Emperia.Weapons
     {
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Life's FAte");
+			DisplayName.SetDefault("Life's Fate");
 		}
         public override void SetDefaults()
         {
@@ -27,6 +27,7 @@ namespace Emperia.Weapons
             item.rare = 5;
 			item.scale = 1.3f;
             item.autoReuse = true;
+			item.UseSound = SoundID.Item1; 
 
         }
         public override void AddRecipes()

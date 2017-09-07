@@ -8,7 +8,7 @@ namespace Emperia.Projectiles.Flail
 {
     public delegate void ExtraAction();
 
-    public static class ProjectileExtras
+    public static class pextra
 	{
 
 		public static void HomingAIVanilla(ModProjectile modProj, NPC target, float velocity = 4f, float weight = 0.0333f)

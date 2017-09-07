@@ -13,6 +13,7 @@ namespace Emperia.Weapons.Color1   //where is located
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Mellow");
+			Tooltip.SetDefault("Striking an enemy will increase movement speed, melee speed and flight time for a short time");
 		}
         public override void SetDefaults()
         {   //Sword name

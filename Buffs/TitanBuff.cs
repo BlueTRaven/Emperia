@@ -17,7 +17,7 @@ namespace Emperia.Buffs
         public override void SetDefaults()
         {
 			DisplayName.SetDefault("Titian Tyranny");
-			Description.SetDefault("Your skin hardens - +8 defense");
+			Description.SetDefault("Defense increased by 6");
             Main.buffNoSave[Type] = true;
             //Main.buffNoTimeDisplay[Type] = true;
 
@@ -26,7 +26,7 @@ namespace Emperia.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.statDefense += 8;
+            player.statDefense += 6;
         }
     }
 }

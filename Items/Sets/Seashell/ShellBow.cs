@@ -30,6 +30,7 @@ namespace Emperia.Items.Sets.Seashell
             item.rare = 1;
             item.autoReuse = true;
             item.shootSpeed = 10f;
+			item.UseSound = SoundID.Item5; 
 
         }
         public override void AddRecipes()  //How to craft this sword

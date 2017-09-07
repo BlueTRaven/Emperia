@@ -29,7 +29,8 @@ namespace Emperia.Weapons   //where is located
 			item.scale = 1.15f;
             item.autoReuse = true;   //if it's capable of autoswing.
             item.useTurn = true; 
-item.shoot = 1;            //projectile speed                 
+item.shoot = 1;            //projectile speed   
+item.UseSound = SoundID.Item1;               
         }
 		
         public override void AddRecipes()  //How to craft this sword

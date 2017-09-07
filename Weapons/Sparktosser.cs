@@ -16,7 +16,7 @@ namespace Emperia.Weapons
 		}
         public override void SetDefaults()
         {  
-            item.damage = 8;  
+            item.damage = 11;  
             item.ranged = true;    
             item.width = 42; 
             item.height = 16;    
@@ -32,7 +32,7 @@ namespace Emperia.Weapons
             item.shoot = 85;   
             item.shootSpeed = 4.5f; 
             item.useAmmo = AmmoID.Gel;
-			item.reuseDelay = 40;
+			item.reuseDelay = 20;
         }
  
 		public override void AddRecipes()

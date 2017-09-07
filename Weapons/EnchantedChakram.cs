@@ -11,7 +11,7 @@ namespace Emperia.Weapons
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Enchanted Chakram");
-			Tooltip.SetDefault("Shimmer with crystal light");
+			Tooltip.SetDefault("Throws a homing disk at your enemies");
 		}
         public override void SetDefaults()
         {       
@@ -29,6 +29,7 @@ namespace Emperia.Weapons
             item.shootSpeed = 12f;
             item.shoot = mod.ProjectileType ("EnchantedChakram");
             item.autoReuse = true;
+			item.UseSound = SoundID.Item5; 
         }
 
         public override void AddRecipes()

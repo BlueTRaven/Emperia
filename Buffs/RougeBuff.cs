@@ -17,7 +17,7 @@ namespace Emperia.Buffs
         public override void SetDefaults()
         {
 			DisplayName.SetDefault("Rouge Rage");
-			Description.SetDefault("Critical hits deal double damage");
+			Description.SetDefault("Critical hits deal 30% increased damage");
             Main.buffNoSave[Type] = true;
             //Main.buffNoTimeDisplay[Type] = true;
 
@@ -27,7 +27,7 @@ namespace Emperia.Buffs
         public override void Update(Player player, ref int buffIndex)
         {
 			MyPlayer p = player.GetModPlayer<MyPlayer>(mod);
-			p.doubleCrit = true;
+			p.incCrit = true;
         }
     }
 }

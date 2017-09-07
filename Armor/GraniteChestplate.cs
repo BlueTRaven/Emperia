@@ -38,7 +38,7 @@ public class GraniteChestplate : ModItem
     public override void AddRecipes()
     {
         ModRecipe recipe = new ModRecipe(mod);
-        recipe.AddIngredient(null, "GraniteBar", 18);
+        recipe.AddIngredient(null, "GraniteBar", 12);
         recipe.AddTile(TileID.Anvils);
         recipe.SetResult(this);
         recipe.AddRecipe();

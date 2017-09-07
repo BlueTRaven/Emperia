@@ -14,6 +14,7 @@ namespace Emperia
 {
     public class MyPlayer : ModPlayer
     {
+		public bool SunSeal = false;
         public bool wSpirit = false;
         public bool enchanted = false;
 		public bool canSpore = true;
@@ -30,6 +31,8 @@ namespace Emperia
 		public bool ZoneTwilight = false;
 		public bool ZoneCanyon = false;
 		public bool doubleCrit = false;
+		public bool incCrit = false;
+		public bool incCrit2 = false;
 		public int points = 0;
 		public int rofIncrease = 0;
 		public bool slightKnockback = false;
@@ -41,6 +44,9 @@ namespace Emperia
 
         public override void ResetEffects()
         {
+			SunSeal = false;
+			incCrit2 = false;
+			incCrit = false;
             wSpirit = false;
 			skullLightPet = false;
             enchanted = false;
@@ -189,10 +195,15 @@ namespace Emperia
 		}
 		public override void ModifyHitNPC (Item item, NPC target, ref int damage, ref float knockback, ref bool crit)
 		{
-			if (crit == true && doubleCrit == true)
+			if (crit == true && incCrit2 == true)
 			{	
-				damage *= 2;
+				damage = 2;
 			}
+			else if (crit == true && incCrit == true)
+			{
+				
+				damage += damage / 2;
+			}				
 			if (slightKnockback)
 			{
 				knockback *= 1.1f;
@@ -204,10 +215,21 @@ namespace Emperia
 			{
 				Projectile.NewProjectile(target.Center.X, target.Center.Y, 0, 0, mod.ProjectileType("HealingProjectile"), 14, 0, player.whoAmI, ai1: 36);
 			}
+			if (SunSeal && Main.dayTime)
+			{
+				Vector2 placePosition = player.Center + new Vector2(0, -600);
+				Vector2 direction = target.Center - placePosition;
+				direction.Normalize();
+				Projectile.NewProjectile(player.Center.X, player.Center.Y - 600, direction.X * 10f, direction.Y * 10f, mod.ProjectileType("SolarBlast"), 50, 1, Main.myPlayer, 0, 0);
+			}
 		}
 		public override void OnHitNPCWithProj (Projectile projectile, NPC target, int damage, float knockback, bool crit)
 		{
-			if (mystiqueSetBonus && projectile.magic || projectile.melee)
+			if (mystiqueSetBonus && projectile.magic)
+			{
+				Projectile.NewProjectile(target.Center.X, target.Center.Y, 0, 0, mod.ProjectileType("HealingProjectile"), 14, 0, player.whoAmI, ai1: 36);
+			}
+			if (mystiqueSetBonus && projectile.melee)
 			{
 				Projectile.NewProjectile(target.Center.X, target.Center.Y, 0, 0, mod.ProjectileType("HealingProjectile"), 14, 0, player.whoAmI, ai1: 36);
 			}

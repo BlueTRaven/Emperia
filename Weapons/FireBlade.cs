@@ -13,6 +13,7 @@ namespace Emperia.Weapons   //where is located
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Fire Blade");
+			Tooltip.SetDefault("Swinging the blade shoots a firey bolt");
 		}
         public override void SetDefaults()
         {

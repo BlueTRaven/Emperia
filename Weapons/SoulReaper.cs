@@ -11,7 +11,7 @@ namespace Emperia.Weapons
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Reaper of Souls");
-			Tooltip.SetDefault("The legends say...");
+			Tooltip.SetDefault("Successfu hits will produce a strike projectile to deal extra damage");
 		}
         public override void SetDefaults()
         {         
@@ -29,6 +29,7 @@ namespace Emperia.Weapons
             item.shootSpeed = 12f;
             item.shoot = mod.ProjectileType ("SoulReaper");
             item.autoReuse = true;
+			item.UseSound = SoundID.Item1; 
         }
 		public override void AddRecipes()
 		{

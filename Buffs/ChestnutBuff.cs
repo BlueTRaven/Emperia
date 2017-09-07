@@ -26,9 +26,13 @@ namespace Emperia.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-			player.endurance += 0.05f;
-			player.moveSpeed += 0.10f;
-			 player.lifeRegen += 3;
+			player.endurance += 0.02f;
+			player.moveSpeed += 0.02f;
+			player.meleeDamage *= 1.02f;
+		player.rangedDamage *= 1.02f;
+		player.magicDamage *= 1.02f;
+		player.minionDamage *= 1.02f;
+		player.thrownDamage *= 1.02f;
         }
     }
 }

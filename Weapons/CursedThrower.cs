@@ -13,7 +13,7 @@ namespace Emperia.Weapons
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Ebonflamer");
-			Tooltip.SetDefault("Fires cursed flames\n 75% chance to not consume gel");
+			Tooltip.SetDefault("Fires cursed flames instead of normal flames\n 75% chance to not consume gel");
 		}
         public override void SetDefaults()
         {  

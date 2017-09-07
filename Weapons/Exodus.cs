@@ -14,6 +14,7 @@ namespace Emperia.Weapons  //where is located
 		 public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Exodus");
+			Tooltip.SetDefault("Successful hits will cause an explosion, damaging nearby enemies");
 		}
         public override void SetDefaults()
         {    //Sword name
@@ -30,7 +31,8 @@ namespace Emperia.Weapons  //where is located
 			item.scale = 1f;
 			item.shootSpeed = 8f;
             item.autoReuse = true;   //if it's capable of autoswing.
-            item.useTurn = true;             //player speed                 
+            item.useTurn = true;             //player speed
+			item.UseSound = SoundID.Item1; 			
         }
 		 public override void AddRecipes()
         {

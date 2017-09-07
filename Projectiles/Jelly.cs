@@ -21,7 +21,7 @@ namespace Emperia.Projectiles
             projectile.width = 25;
             projectile.height = 25;
             projectile.friendly = true;
-            projectile.thrown = true;
+            projectile.ranged = true;
             projectile.penetrate = 1;
             projectile.aiStyle = 2;
             projectile.timeLeft = 180;
@@ -66,7 +66,7 @@ namespace Emperia.Projectiles
 				{
 				Vector2 vec = Vector2.Transform(new Vector2(-explodeRadius, 0), Matrix.CreateRotationZ(MathHelper.ToRadians(i)));
 				vec.Normalize();
-				int num622 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 4, 0f, 0f, 4, new Color(53f, 67f, 253f), 2f);
+				int num622 = Dust.NewDust(new Vector2(projectile.position.X, projectile.position.Y), projectile.width, projectile.height, 41, 0f, 0f, 41, new Color(53f, 67f, 253f), 2f);
 				Main.dust[num622].velocity += (vec *5f);
 				}
 

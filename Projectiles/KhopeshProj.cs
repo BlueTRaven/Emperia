@@ -20,7 +20,6 @@ namespace Emperia.Projectiles
             projectile.aiStyle = 3;
             projectile.friendly = true;
             projectile.melee = true;
-            projectile.magic = false;
             projectile.penetrate = 3;
             projectile.timeLeft = 600;
             projectile.light = 0.5f;

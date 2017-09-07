@@ -7,6 +7,7 @@ namespace Emperia.Items
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Sunbaked Seeds");
+			Tooltip.SetDefault("Places a sunsoaked chestnut plant");
 		}
 		public override void SetDefaults()
 		{

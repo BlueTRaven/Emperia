@@ -34,7 +34,7 @@ public class MystiqueHelmet : ModItem
 
     public override void UpdateArmorSet(Player player)
     {
-        player.setBonus = "Melee and magic projectile spawn seeking healing projectiles on hit \n Upon killing an enemy using a melee or magic weapon, it will explode";
+        player.setBonus = "Melee and magic projectile spawn seeking healing projectiles on hit";
         player.GetModPlayer<MyPlayer>(mod).mystiqueSetBonus = true;
     }
     

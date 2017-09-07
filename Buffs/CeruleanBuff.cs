@@ -17,7 +17,7 @@ namespace Emperia.Buffs
         public override void SetDefaults()
         {
 			DisplayName.SetDefault("Cerulean Charge");
-			Description.SetDefault("15% increased melee damage");
+			Description.SetDefault("13% increased melee damage");
             Main.buffNoSave[Type] = true;
             //Main.buffNoTimeDisplay[Type] = true;
 
@@ -26,7 +26,7 @@ namespace Emperia.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            player.meleeDamage += 0.15f;
+            player.meleeDamage += 0.13f;
         }
     }
 }

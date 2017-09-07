@@ -28,7 +28,8 @@ namespace Emperia.Items.Sets.Seashell  //where is located
             item.rare = 1;
 			item.scale = 1f;
             item.autoReuse = false;   //if it's capable of autoswing.
-            item.useTurn = true;             //projectile speed                 
+            item.useTurn = true;             //projectile speed
+			item.UseSound = SoundID.Item1; 			
         }
 		
         public override void AddRecipes()  //How to craft this sword

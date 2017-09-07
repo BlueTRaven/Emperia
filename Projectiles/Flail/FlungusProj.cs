@@ -35,7 +35,7 @@ namespace Emperia.Projectiles.Flail
 
         public override bool PreAI()
         {
-            ProjectileExtras.FlailAI(projectile.whoAmI);
+            pextra.FlailAI(projectile.whoAmI);
             return true;
         }
 		 public override void AI()
@@ -49,15 +49,15 @@ namespace Emperia.Projectiles.Flail
         }
         public override bool OnTileCollide(Vector2 oldVelocity)
         {
-            return ProjectileExtras.FlailTileCollide(projectile.whoAmI, oldVelocity);
+            return pextra.FlailTileCollide(projectile.whoAmI, oldVelocity);
 			return true;
         }
         
         public override bool PreDraw(SpriteBatch spriteBatch, Color lightColor)
         {
-            ProjectileExtras.DrawChain(projectile.whoAmI, Main.player[projectile.owner].MountedCenter,
+            pextra.DrawChain(projectile.whoAmI, Main.player[projectile.owner].MountedCenter,
                 "Emperia/Projectiles/Flail/FlungusChain");
-            ProjectileExtras.DrawAroundOrigin(projectile.whoAmI, lightColor);
+            pextra.DrawAroundOrigin(projectile.whoAmI, lightColor);
             return false;
         }
     }

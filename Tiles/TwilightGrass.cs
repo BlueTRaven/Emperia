@@ -55,7 +55,7 @@ namespace Emperia.Tiles
 	
 		public override void RandomUpdate(int i, int j)
         {
-            if(Framing.GetTileSafely(i,j-1).type==0&&Framing.GetTileSafely(i,j-2).type==0)
+            if(Framing.GetTileSafely(i,j-1).type==0&&Framing.GetTileSafely(i,j-2).type==0&&Main.rand.Next(5) == 0)
             {
                 WorldGen.GrowTree(i, j-1);
 				if(Main.rand.Next(20)==0)
@@ -68,7 +68,7 @@ namespace Emperia.Tiles
 				}
 				else
                 {
-					switch(Main.rand.Next(6)) 
+					switch(Main.rand.Next(7)) 
 						   {
 								case 0: 
 								    WorldGen.PlaceObject(i-1,j-1,mod.TileType("TwilightFlora1"));
@@ -89,6 +89,10 @@ namespace Emperia.Tiles
 								case 4: 
 								    WorldGen.PlaceObject(i-1,j-1,mod.TileType("MagnificentMushroom"));
 									NetMessage.SendObjectPlacment(-1,i-1,j-1,mod.TileType("MagnificentMushroom"),0,0,-1,-1);
+								break;
+								case 5: 
+								    WorldGen.PlaceObject(i-1,j-1,mod.TileType("SunsoakedChestnut"));
+									NetMessage.SendObjectPlacment(-1,i-1,j-1,mod.TileType("SunsoakedChestnut"),0,0,-1,-1);
 								break;
 								default:
 								    WorldGen.PlaceObject(i-1,j-1,mod.TileType("TwilightFlora5"));

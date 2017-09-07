@@ -13,6 +13,7 @@ namespace Emperia.Weapons.Color1   //where is located
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Vibrance");
+			Tooltip.SetDefault("Striking an enemy will increase defense, critical hit damage and critical hit chance for a short time");
 		}
         public override void SetDefaults()
         {   //Sword name

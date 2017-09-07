@@ -21,13 +21,13 @@ namespace Emperia.Materials
 	public override void AddRecipes()
 		{
 			ModRecipe recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.IronBar, 1);
+			recipe.AddIngredient(ItemID.GoldBar, 1);
 			recipe.AddIngredient(ItemID.Granite, 10);
 			recipe.AddTile(TileID.Furnaces);  
 			recipe.SetResult(this);
 			recipe.AddRecipe();
 			recipe = new ModRecipe(mod);
-			recipe.AddIngredient(ItemID.LeadBar, 1);
+			recipe.AddIngredient(ItemID.PlatinumBar, 1);
 			recipe.AddIngredient(ItemID.Granite, 10);
 			recipe.AddTile(TileID.Furnaces);  
 			recipe.SetResult(this);

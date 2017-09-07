@@ -14,6 +14,7 @@ public class fireIceBolt : ModProjectile
 	public override void SetDefaults()
 	{
 		projectile.CloneDefaults(ProjectileID.IceBolt);
+		projectile.melee = true;
 		projectile.alpha = 255;
 		
 	}

@@ -30,7 +30,8 @@ namespace Emperia.Weapons   //where is located
 			item.shoot = mod.ProjectileType("OceanWave");
 			item.shootSpeed = 8f;
             item.autoReuse = false;   //if it's capable of autoswing.
-            item.useTurn = true;             //projectile speed                 
+            item.useTurn = true;             //projectile speed     
+item.UseSound = SoundID.Item1;             
         }
 		public override void AddRecipes()
 		{

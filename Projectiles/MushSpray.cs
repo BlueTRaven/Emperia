@@ -19,8 +19,7 @@ namespace Emperia.Projectiles       //We need this to basically indicate the fol
             projectile.height = 12; //Set the hitbox height
             projectile.friendly = false; 
             projectile.hostile = true;			//Tells the game whether it is friendly to players/friendly npcs or not
-            projectile.ignoreWater = true;  //Tells the game whether or not projectile will be affected by water
-            projectile.ranged = true;  //Tells the game whether it is a ranged projectile or not
+            projectile.ignoreWater = true;  //Tells the game whether or not projectile will be affected by water //Tells the game whether it is a ranged projectile or not
             projectile.penetrate = -1; //Tells the game how many enemies it can hit before being destroyed, -1 infinity
             projectile.timeLeft = 125;  //The amount of time the projectile is alive for  
             projectile.extraUpdates = 3;

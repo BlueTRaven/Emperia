@@ -16,6 +16,7 @@ namespace Emperia.Weapons
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Jelly Cannon");
+			Tooltip.SetDefault("Fires a gel bomb dealing explosive damage to all enemies within its radius");
 		}
         public override void SetDefaults()
         {

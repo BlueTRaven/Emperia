@@ -30,7 +30,8 @@ namespace Emperia.Weapons.Storm  //where is located
 			item.shoot = mod.ProjectileType("Lightning");
 			item.shootSpeed = 8f;
             item.autoReuse = true;   //if it's capable of autoswing.
-            item.useTurn = true;             //projectile speed                 
+            item.useTurn = true;             //projectile speed   
+item.UseSound = SoundID.Item1; 			
         }
 		
     }

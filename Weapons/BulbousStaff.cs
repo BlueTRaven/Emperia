@@ -13,6 +13,7 @@ namespace Emperia.Weapons   //where is located
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Bulbous Staff");
+			Tooltip.SetDefault("Shoots seeds which can explode and multiply into more seeds");
 		}
         public override void SetDefaults()
         {    //Sword name
@@ -32,7 +33,8 @@ namespace Emperia.Weapons   //where is located
 			item.shoot = mod.ProjectileType("Seed"); // the tornado when its ready
 			item.shootSpeed = 8f;
             item.autoReuse = false;   //if it's capable of autoswing.
-            item.useTurn = true;             //projectile speed                 
+            item.useTurn = true;             //projectile speed
+			item.UseSound = SoundID.Item8;			
         }
 		 public override void AddRecipes()
         {

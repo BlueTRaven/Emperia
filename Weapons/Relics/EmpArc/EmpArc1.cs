@@ -44,7 +44,7 @@ namespace Emperia.Weapons.Relics.EmpArc
             item.rare = 1;
             item.autoReuse = true;
             item.shootSpeed = 10f;
-
+			item.UseSound = SoundID.Item5; 
         }
 		public override Vector2? HoldoutOffset()
 		{

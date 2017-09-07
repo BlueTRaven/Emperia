@@ -26,7 +26,6 @@ namespace Emperia.Projectiles
             projectile.height = 50;
             projectile.friendly = true;
             //projectile.hostile = true;
-            projectile.melee = true;
             projectile.tileCollide = false;
             projectile.penetrate = 1;
             projectile.timeLeft = 200;

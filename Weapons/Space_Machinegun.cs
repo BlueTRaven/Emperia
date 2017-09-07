@@ -20,6 +20,7 @@ namespace Emperia.Weapons
 		public override void SetStaticDefaults()
 		{
 			DisplayName.SetDefault("Space Machinegun");
+			
 		}
         public override void SetDefaults()
         {
