@@ -42,7 +42,7 @@ namespace Emperia.NPCs
 		}
 		public override void HitEffect(int hitDirection, double Damage)
 		{
-			if (npc.life <= 0);
+			if (npc.life <= 0)
 			{
 				return;
 			}
