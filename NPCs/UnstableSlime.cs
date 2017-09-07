@@ -42,6 +42,10 @@ namespace Emperia.NPCs
 		}
 		public override void HitEffect(int hitDirection, double Damage)
 		{
+			if (npc.life <= 0);
+			{
+				return;
+			}
 			switch (Main.rand.Next(2))
 				{
 					case 0: 
@@ -56,9 +60,9 @@ namespace Emperia.NPCs
 						int dust = Dust.NewDust(npc.position, npc.width, npc.height, 58, 0f, 0f, 0, new Color(), 1.5f);
 						Main.dust[dust].noGravity = true;
 					}
-					npc.position.X = (Main.player[npc.target].position.X + (Main.rand.Next(90, 150) * mult));
-					npc.position.Y = Main.player[npc.target].position.Y - Main.rand.Next(50, 250);
-					for (int m = 0; m <= 10; m++)
+				npc.position.X = (Main.player[npc.target].position.X + (Main.rand.Next(90, 150) * mult));
+				npc.position.Y = Main.player[npc.target].position.Y - Main.rand.Next(50, 200);
+				for (int m = 0; m <= 10; m++)
 					{
 						int dust = Dust.NewDust(npc.position, npc.width, npc.height, 58, 0f, 0f, 0, new Color(), 1.5f);
 						Main.dust[dust].noGravity = true;
