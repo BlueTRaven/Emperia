@@ -40,12 +40,16 @@ namespace Emperia.NPCs
 			npc.lifeMax = Convert.ToInt32(npc.lifeMax * 1.4);
 			npc.damage = Convert.ToInt32(npc.damage * 1.4);
 		}
-		public override void HitEffect(int hitDirection, double Damage)
+		public override void HitEffect(int hitDirection, double Damage, bool isDead)
 		{
-			if (npc.life <= 0)
+			if (isDead)
 			{
 				return;
 			}
+			
+			teleTarget = (npc.Position.X + Main.rand.Next(-75, 75), npc.position.Y - Main.rand.Next(0, 75))
+			
+			/*
 			switch (Main.rand.Next(2))
 				{
 					case 0: 
@@ -55,6 +59,7 @@ namespace Emperia.NPCs
 						mult = -1;
 						break;
 				}
+				
 				for (int m = 0; m <= 10; m++)
 					{
 						int dust = Dust.NewDust(npc.position, npc.width, npc.height, 58, 0f, 0f, 0, new Color(), 1.5f);
@@ -67,6 +72,7 @@ namespace Emperia.NPCs
 						int dust = Dust.NewDust(npc.position, npc.width, npc.height, 58, 0f, 0f, 0, new Color(), 1.5f);
 						Main.dust[dust].noGravity = true;
 					}
+			*/
 		}
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
@@ -74,6 +80,20 @@ namespace Emperia.NPCs
 			int y = spawnInfo.spawnTileY;
 			int tile = Main.tile[x, y].type;
 			return Main.dayTime ? 0.80f : 0;
+		}
+		
+		private int switchCase()
+		/*Just a condensation of the switch-case syntax,
+		since it will be used multiple times in the teleport code,
+		and it needs to vary on each choice.*/
+		{
+		switch (Main.rand.Next(2))
+			{
+				case 0: 
+					return 1;
+				case 1:
+					return -1;
+			}
 		}
 		
 		
