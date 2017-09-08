@@ -47,7 +47,11 @@ namespace Emperia.NPCs
 				return;
 			}
 			
-			teleTarget = (npc.Position.X + Main.rand.Next(-75, 75), npc.position.Y - Main.rand.Next(0, 75))
+			List<int> teleTarget = new List<int>();
+			teleTarget.Add(npc.Position.X + Main.rand.Next(-75, 75));
+			teleTarget.Add(npc.Position.Y - Main.rand.Next(0, 75));
+			//Eventually it will teleport in a zigzag pattern to the target as defined by the list
+			//Use a Vector 2 maybe??
 			
 			/*
 			switch (Main.rand.Next(2))
@@ -87,7 +91,7 @@ namespace Emperia.NPCs
 		since it will be used multiple times in the teleport code,
 		and it needs to vary on each choice.*/
 		{
-		switch (Main.rand.Next(2))
+			switch (Main.rand.Next(2))
 			{
 				case 0: 
 					return 1;
@@ -96,6 +100,10 @@ namespace Emperia.NPCs
 			}
 		}
 		
-		
+		private void teleportRelative(x, y)
+		{
+			npc.Position.X = npc.Position.X + x;
+			npc.Position.Y = npc.Position.Y + y;
+		}
 	}
 }
