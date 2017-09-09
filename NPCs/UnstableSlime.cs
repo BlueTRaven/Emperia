@@ -48,8 +48,8 @@ namespace Emperia.NPCs
 				return;
 			}
 			
-			float teleLenX = (npc.position.X + Main.rand.Next(-100, 100)) / numTeleports;
-			float teleLenY = (npc.position.Y - Main.rand.Next(0, 100)) / numTeleports;
+			float teleLenX = (Main.rand.Next(-100, 100) / numTeleports);
+			float teleLenY = (Main.rand.Next(-100, 0) / numTeleports);
 			//divides the length it needs to teleport into squares based on the number of teleports
 			
 			for (int m = 0; m <= numTeleports; m++)
