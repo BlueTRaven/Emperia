@@ -18,14 +18,15 @@ namespace Emperia.Bosses.Inquisitor
             AfterTeleport,
             LaserStart,
             LaserDuring,
-            BoltStart,
-            BoltDuring,
+            BoltFire,
             PhaseTransitionStart,
             Floating
         }
 
         private Move move { get { return (Move)npc.ai[0]; } set { npc.ai[0] = (int)value; } }
         private Move prevMove;
+		
+		private int counter;
 
 		private Vector2 targetPosition;
 
@@ -77,29 +78,82 @@ namespace Emperia.Bosses.Inquisitor
             Player player = Main.player[npc.target];
 			
             if (!player.active || player.dead)
-            {
-                npc.TargetClosest(false);
-                player = Main.player[npc.target];
-            }
+			{
+				npc.TargetClosest(true);
+				player = Main.player[npc.target];
+			}
 		
 			if (npc.ai[3] == 0)
 			{
+				if (move == Move.Floating)
+				{
+					counter--;
+					if (counter <= 0)
+					{
+						SetMove(Move.Teleporting, 0);
+					}
+				}
 				if (move == Move.Teleporting)
 				{
-
-					npc.position = player.Center + new Vector2(-(npc.width / 2), -196);
+					counter--;
+					npc.position = player.Center + new Vector2(Main.rand.Next(-512, 512), Main.rand.Next(-512, -100));
 					
-					//SetMove(Move.AfterTeleport);
+					SetMove(Move.AfterTeleport, 60);
 				}
-				if (npc.life <= npc.lifeMax * .5f)
+				if (move == Move.AfterTeleport)
 				{
-					npc.ai[3] = 1;
+					counter--;
+					
+					if (counter <= 0)
+					{
+						if (Main.rand.Next(0,11) == 0)
+						{ SetMove(Move.LaserStart, 60); }
+						else { SetMove(Move.BoltFire, 0); }
+					}
 				}
+				if (move == Move.BoltFire)
+				{
+					counter--;
+					Vector2 vec = Vector2.Normalize(player.Center - npc.Center) * 6;
+					Vector2 vecu = Vector2.Transform(vec, Matrix.CreateRotationZ(MathHelper.ToRadians(-8)));
+					Vector2 vecd = Vector2.Transform(vec, Matrix.CreateRotationZ(MathHelper.ToRadians(8)));
+					Emperia.CreateProjectile<Projectiles.FearBolt>(mod, npc.Center, vec, 5, 0);
+					Emperia.CreateProjectile<Projectiles.FearBolt>(mod, npc.Center, vecu, 5, 0);
+					Emperia.CreateProjectile<Projectiles.FearBolt>(mod, npc.Center, vecd, 5, 0);
+					
+					SetMove(Move.Floating, Main.rand.Next(180, 240));
+				}
+				if (move == Move.LaserStart)
+				{
+					counter--;
+					
+					//set the sprite to laser charging
+					
+					if (counter <= 0)
+					{
+						SetMove(Move.LaserDuring, 180)
+					}
+				}
+				if (move == Move.LaserDuring)
+				{
+					counter--;
+					
+					//set the sprite to laser firing, fire the laser
+					
+					if (counter <= 0)
+					{
+						SetMove(Move.Floating, Main.rand.Next(240, 360))
+					}
+				}
+				//if (npc.life <= npc.lifeMax * .5f)
+				//{
+				//	npc.ai[3] = 1;    <second phase stuff
+				//}
 			}
-			else if (npc.ai[3] == 1)
-			{
-				
-			}
+			//else if (npc.ai[3] == 1)
+			//{
+			//	
+			//}
             
         }
 
@@ -117,10 +171,11 @@ namespace Emperia.Bosses.Inquisitor
             }
         }
 
-        private void SetMove(Move move)
+        private void SetMove(Move move, int counter)
         {
             this.prevMove = this.move;
             this.move = move;
+			this.counter = counter;
         }
 
         private bool IsInPhaseTwo()
