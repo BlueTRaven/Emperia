@@ -19,8 +19,8 @@ namespace Emperia.Weapons.Mystique
             item.damage = 43;
             item.noMelee = true;
             item.ranged = true;
-            item.width = 69;
-            item.height = 40;
+            item.width = 30;
+            item.height = 61;
             item.useTime = 5;
             item.useAnimation = 4;
             item.useStyle = 5;
@@ -28,7 +28,7 @@ namespace Emperia.Weapons.Mystique
             item.useAmmo = ItemID.WoodenArrow;
             item.knockBack = 1;
             item.value = 1000;
-            item.rare = 1;
+            item.rare = 2;
             item.autoReuse = true;
             item.shootSpeed = 10f;
 			item.UseSound = SoundID.Item5; 
@@ -47,6 +47,7 @@ namespace Emperia.Weapons.Mystique
 		{
         ModRecipe recipe = new ModRecipe(mod);
         //recipe.AddIngredient(null, "MystiqueBar", 8);
+		recipe.AddIngredient(ItemID.DirtBlock, 1);
         recipe.AddTile(TileID.Anvils);
         recipe.SetResult(this);
         recipe.AddRecipe();
