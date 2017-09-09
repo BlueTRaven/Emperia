@@ -71,8 +71,8 @@ namespace Emperia.Bosses.Inquisitor
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = 16000 * (numPlayers / 2) * bossLifeScale;
-            npc.damage = 175 * (numPlayers);
+            npc.lifeMax = 16000;
+            npc.damage = 175;
         }
 
         public override void AI()
