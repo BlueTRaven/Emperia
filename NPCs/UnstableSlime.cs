@@ -50,42 +50,30 @@ namespace Emperia.NPCs
 			
 			float teleLenX = (Main.rand.Next(-100, 100) / numTeleports);
 			float teleLenY = (Main.rand.Next(-100, 0) / numTeleports);
-			//divides the length it needs to teleport into squares based on the number of teleports
+			//divides the length it needs to teleport into squares based on the number of teleports specified
 			
-			for (int m = 0; m <= numTeleports; m++)
+			for (int m = 0; m <= numTeleports; m++) //teleports vertically, creates a dust effect, then teleports horizontally and creates another dust effect.
+			//also it waits to make the teleport perceivable
 			{
-				teleportRelative(teleLenX, teleLenY);
+				teleportRelative(0, teleLenY);
+				for (int n = 0; n <= 10; n++)
+					{
+						int dust = Dust.NewDust(npc.position, npc.width, npc.height, 58, 0f, 0f, 0, new Color(), 1.5f);
+						Main.dust[dust].noGravity = true;
+					}
+				waitFor(1000);
+				teleportRelative(teleLenX, 0);
+				for (int n = 0; n <= 10; n++)
+					{
+						int dust = Dust.NewDust(npc.position, npc.width, npc.height, 58, 0f, 0f, 0, new Color(), 1.5f);
+						Main.dust[dust].noGravity = true;
+					}
+				waitFor(1000);
 			}
-			//teleports to each square's upper corner that is closer to the target the number of times it takes to get there
 			
 			//Eventually it will teleport in a zigzag pattern to the target as defined by the list
-			//Use a Vector 2 as destination maybe??
-			
-			/*
-			switch (Main.rand.Next(2))
-				{
-					case 0: 
-						mult = 1;
-						break;
-					case 1:
-						mult = -1;
-						break;
-				}
-				
-				for (int m = 0; m <= 10; m++)
-					{
-						int dust = Dust.NewDust(npc.position, npc.width, npc.height, 58, 0f, 0f, 0, new Color(), 1.5f);
-						Main.dust[dust].noGravity = true;
-					}
-				npc.position.X = (Main.player[npc.target].position.X + (Main.rand.Next(90, 150) * mult));
-				npc.position.Y = Main.player[npc.target].position.Y - Main.rand.Next(50, 200);
-				for (int m = 0; m <= 10; m++)
-					{
-						int dust = Dust.NewDust(npc.position, npc.width, npc.height, 58, 0f, 0f, 0, new Color(), 1.5f);
-						Main.dust[dust].noGravity = true;
-					}
-			*/
 		}
+		
 		public override float SpawnChance(NPCSpawnInfo spawnInfo)
 		{
 			int x = spawnInfo.spawnTileX;
@@ -98,6 +86,19 @@ namespace Emperia.NPCs
 		{
 			npc.position.X = npc.position.X + x;
 			npc.position.Y = npc.position.Y + y;
+		}
+		
+		private void waitFor(int milliseconds) //a hacked version of waiting, shouldn't pause the entire game
+		{
+			milliseconds = milliseconds / (16 + (2/3));
+			for (int x = 0; x <= milliseconds; x++)
+			{
+				if (x >= milliseconds)
+				{
+					return;
+				}
+			}
+			return;
 		}
 	}
 }
