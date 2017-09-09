@@ -131,7 +131,7 @@ namespace Emperia.Bosses.Inquisitor
 					
 					if (counter <= 0)
 					{
-						SetMove(Move.LaserDuring, 180)
+						SetMove(Move.LaserDuring, 180);
 					}
 				}
 				if (move == Move.LaserDuring)
@@ -142,7 +142,7 @@ namespace Emperia.Bosses.Inquisitor
 					
 					if (counter <= 0)
 					{
-						SetMove(Move.Floating, Main.rand.Next(240, 360))
+						SetMove(Move.Floating, Main.rand.Next(240, 360));
 					}
 				}
 				//if (npc.life <= npc.lifeMax * .5f)
