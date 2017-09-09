@@ -19,6 +19,7 @@ namespace Emperia.NPCs
 		}
 
 		int mult;
+		int numTeleports = 5;
 		public override void SetDefaults()
 		{
 			npc.lifeMax = 60;
@@ -40,18 +41,25 @@ namespace Emperia.NPCs
 			npc.lifeMax = Convert.ToInt32(npc.lifeMax * 1.4);
 			npc.damage = Convert.ToInt32(npc.damage * 1.4);
 		}
-		public override void HitEffect(int hitDirection, double Damage, bool isDead)
+		public override void HitEffect(int hitDirection, double Damage)
 		{
-			if (isDead)
+			if (npc.life <= 0)
 			{
 				return;
 			}
 			
-			List<int> teleTarget = new List<int>();
-			teleTarget.Add(npc.Position.X + Main.rand.Next(-75, 75));
-			teleTarget.Add(npc.Position.Y - Main.rand.Next(0, 75));
+			float teleLenX = (npc.position.X + Main.rand.Next(-100, 100)) / numTeleports;
+			float teleLenY = (npc.position.Y - Main.rand.Next(0, 100)) / numTeleports;
+			//divides the length it needs to teleport into squares based on the number of teleports
+			
+			for (int m = 0; m <= numTeleports; m++)
+			{
+				teleportRelative(teleLenX, teleLenY);
+			}
+			//teleports to each square's upper corner that is closer to the target the number of times it takes to get there
+			
 			//Eventually it will teleport in a zigzag pattern to the target as defined by the list
-			//Use a Vector 2 maybe??
+			//Use a Vector 2 as destination maybe??
 			
 			/*
 			switch (Main.rand.Next(2))
@@ -86,24 +94,10 @@ namespace Emperia.NPCs
 			return Main.dayTime ? 0.80f : 0;
 		}
 		
-		private int switchCase()
-		/*Just a condensation of the switch-case syntax,
-		since it will be used multiple times in the teleport code,
-		and it needs to vary on each choice.*/
+		private void teleportRelative(float x, float y)
 		{
-			switch (Main.rand.Next(2))
-			{
-				case 0: 
-					return 1;
-				case 1:
-					return -1;
-			}
-		}
-		
-		private void teleportRelative(x, y)
-		{
-			npc.Position.X = npc.Position.X + x;
-			npc.Position.Y = npc.Position.Y + y;
+			npc.position.X = npc.position.X + x;
+			npc.position.Y = npc.position.Y + y;
 		}
 	}
 }
