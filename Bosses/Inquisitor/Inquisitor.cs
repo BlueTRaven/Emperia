@@ -71,8 +71,8 @@ namespace Emperia.Bosses.Inquisitor
 
         public override void ScaleExpertStats(int numPlayers, float bossLifeScale)
         {
-            npc.lifeMax = 16000;
-            npc.damage = 175;
+            npc.lifeMax = 16000 * (numPlayers / 2) * bossLifeScale;
+            npc.damage = 175 * (numPlayers);
         }
 
         public override void AI()
@@ -276,7 +276,7 @@ namespace Emperia.Bosses.Inquisitor
 
         private bool IsInPhaseTwo()
         {
-            return npc.life <= npc.lifeMax * .4;    //40% hp
+            return npc.life <= npc.lifeMax * .5;    //50% hp
         }
     }
 }
