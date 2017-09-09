@@ -87,9 +87,9 @@ namespace Emperia.Bosses.Inquisitor
 				if (move == Move.Teleporting)
 				{
 
-					npc.position = player.Center + new Vector2(0, -196);
+					npc.position = player.Center + new Vector2(-(npc.width / 2), -196);
 					
-					SetMove(Move.AfterTeleport);
+					//SetMove(Move.AfterTeleport);
 				}
 				if (npc.life <= npc.lifeMax * .5f)
 				{
