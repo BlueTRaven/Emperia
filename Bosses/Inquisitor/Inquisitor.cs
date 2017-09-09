@@ -27,10 +27,7 @@ namespace Emperia.Bosses.Inquisitor
         private Move move { get { return (Move)npc.ai[0]; } set { npc.ai[0] = (int)value; } }
         private Move prevMove;
 
-        private int counter { get { return (int)npc.ai[1]; } set { npc.ai[1] = value; } }
-        private int counter2 { get { return (int)npc.ai[2]; } set { npc.ai[2] = value; } }
-
-        private Rectangle teleportBounds;
+		private Vector2 targetPosition;
 
         private bool phaseStart;
         private bool phaseEnd;
@@ -58,10 +55,10 @@ namespace Emperia.Bosses.Inquisitor
             npc.HitSound = SoundID.NPCHit1; //57 //20
             npc.DeathSound = SoundID.NPCDeath1;
             npc.buffImmune[24] = true;
+			npc.ai[3] = 0; //phase: 0 is first, 1 is second
 
             npc.netAlways = true;
 
-            teleportBounds = new Rectangle(-256, -512, 512, 512);
         }
 
         public override void FindFrame(int frameHeight)
@@ -78,178 +75,33 @@ namespace Emperia.Bosses.Inquisitor
         public override void AI()
         {
             Player player = Main.player[npc.target];
+			
             if (!player.active || player.dead)
             {
                 npc.TargetClosest(false);
                 player = Main.player[npc.target];
             }
+		
+			if (npc.ai[3] == 0)
+			{
+				if (move == Move.Teleporting)
+				{
 
-            if (IsInPhaseTwo() && !phaseStart)
-            {
-                phaseStart = true;
-                move = Move.PhaseTransitionStart;
-                counter = 240;
-                counter2 = 25;
-
-                for (int x = 0; x < npc.Hitbox.Width; x++)
-                {
-                    for (int y = 0; y < npc.Hitbox.Width; y++)
-                    {
-                        Dust.NewDust(new Vector2(npc.position.X + x, npc.position.Y + y), 2, 2, 109, Main.rand.Next(-2, 2), 0);
-                    }
-                }
-            }
-
-            if (move == Move.PhaseTransitionStart)
-            {
-                counter--;
-                counter2--;
-
-                if (counter2 <= 0)
-                {
-                    for (int i = 0; i < 360; i++)
-                    {
-                        if (i % 12 == 0)
-                        {
-                            Vector2 vec = Vector2.Transform(new Vector2(-64, 0), Matrix.CreateRotationZ(MathHelper.ToRadians(i)));
-
-                            Dust d = Main.dust[Dust.NewDust(npc.Center + vec + new Vector2(-4, -4), 2, 2, 72, 0, -1)];
-                            d.velocity = Vector2.Zero;
-                        }
-                    }
-                    counter2 = 25;
-                }
-
-                if (counter <= 0)
-                {
-                    phaseEnd = true;
-                    move = Move.Teleporting;
-                }
-            }
-            if (move == Move.Teleporting)
-            {
-                bool done = false;
-
-                while (!done)
-                {
-                    float tpX = Main.rand.Next(teleportBounds.X, teleportBounds.Width);
-                    float tpY = Main.rand.Next(teleportBounds.Y, teleportBounds.Height);
-
-                    npc.Center = player.Center + new Vector2(tpX, tpY);
-
-                    Point p = npc.Center.ToTileCoordinates();
-                    if (!Main.tile[p.X, p.Y].active() && Main.tile[p.X, p.Y].liquid <= 0)    //not a liquid and inactive
-                    {
-                        done = true;
-                    }
-                }
-
-                move = Move.AfterTeleport;
-                counter = 120;
-
-                for (int i = 0; i < Main.rand.Next(5, 20); i++)
-                {
+					SmoothMoveToPosition(player.Center + new Vector2(0, -196), .2f, 4);
+					
+					
+					SetMove(Move.AfterTeleport);
+				}
+				if (npc.life <= npc.lifeMax * .5f)
+				{
+					npc.ai[3] = 1;
+				}
+			}
+			else if (npc.ai[3] == 1)
+			{
+				
+			}
             
-                }
-            }
-            if (move == Move.AfterTeleport)
-            {
-                counter--;
-
-                if (counter <= 0)
-                {
-                    if (!phaseEnd)
-                    {
-                        if (Main.rand.Next(2) == 0)
-                        {
-                            SetMove(Move.LaserStart, 0, 4);
-                            //counter2 = 3;
-                            //move = Move.LaserStart;
-                        }
-                        else
-                        {
-                            SetMove(Move.BoltStart, 0, 2);
-                            //counter2 = 3;
-                            //move = Move.BoltStart;
-                        }
-                    }
-                    else
-                    {
-                        if (prevMove == Move.BoltDuring)
-                        {
-                            SetMove(Move.Floating, 120 + Main.rand.Next(0, 240));
-                            //move = Move.Floating;
-                            //counter = 120 + Main.rand.Next(0, 240);
-                        }
-                        else
-                        {
-                            SetMove(Move.BoltStart, 0, 3);
-                            //counter2 = 3;
-                            //move = Move.BoltStart;
-                        }
-                    }
-                }
-            }
-            if (move == Move.LaserStart)
-            {
-             
-                SetMove(Move.LaserDuring, 200, counter2);
-                //counter = 200;
-                //move = Move.LaserDuring;
-            }
-            if (move == Move.LaserDuring)
-            {
-                counter--;
-
-                if (counter <= 0)
-                {
-                    counter2--;
-
-                    if (counter2 > 0)
-                        SetMove(Move.LaserStart, 0, counter2 - 1);// move = Move.LaserStart;
-                    else SetMove(Move.Teleporting, 0);// move = Move.Teleporting;
-                }
-            }
-            if (move == Move.BoltStart)
-            {
-                Vector2 vec = Vector2.Normalize(player.Center - npc.Center) * 6;
-                Vector2 vecu = Vector2.Transform(vec, Matrix.CreateRotationZ(MathHelper.ToRadians(-8)));
-                Vector2 vecd = Vector2.Transform(vec, Matrix.CreateRotationZ(MathHelper.ToRadians(8)));
-                Emperia.CreateProjectile<Projectiles.FearBolt>(mod, npc.Center, vec, 5, 0);
-                Emperia.CreateProjectile<Projectiles.FearBolt>(mod, npc.Center, vecu, 5, 0);
-                Emperia.CreateProjectile<Projectiles.FearBolt>(mod, npc.Center, vecd, 5, 0);
-
-                SetMove(Move.BoltDuring, 20, counter2);
-                //move = Move.BoltDuring;
-                //counter = 20;
-            }
-            if (move == Move.BoltDuring)
-            {
-                counter--;
-
-                if (counter <= 0)
-                {
-                    if (counter2 > 0)
-                        SetMove(Move.BoltStart, 0, counter2 - 1);
-                    else SetMove(Move.Teleporting, 0);
-                }
-            }
-            if (move == Move.Floating)
-            {
-                counter--;
-                SmoothMoveToPosition(new Vector2(player.Center.X, player.Center.Y - 192), .4f, 8);
-
-                if (counter <= 0)
-                {
-                    SetMove(Move.BoltStart, 0, 3);
-                    counter2 = 3;
-                    move = Move.BoltStart;
-                }
-            }
-            else npc.velocity *= .95f;
-
-            Dust d1 = Main.dust[Dust.NewDust(npc.position + new Vector2(Main.rand.Next(0, npc.width), npc.height) - new Vector2(8, 2), 20, 20, 109, Main.rand.Next(-2, 3), 0)];
-            d1.velocity = new Vector2(0, -2);
         }
 
         private void SmoothMoveToPosition(Vector2 toPosition, float addSpeed, float maxSpeed, float slowRange = 64, float slowBy = .95f)
@@ -266,12 +118,10 @@ namespace Emperia.Bosses.Inquisitor
             }
         }
 
-        private void SetMove(Move move, int counter, int counter2 = 0)
+        private void SetMove(Move move)
         {
             this.prevMove = this.move;
             this.move = move;
-            this.counter = counter;
-            this.counter2 = counter2;
         }
 
         private bool IsInPhaseTwo()
