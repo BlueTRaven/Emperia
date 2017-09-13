@@ -106,8 +106,10 @@ namespace Emperia.Bosses.Inquisitor
 					
 					if (counter <= 0)
 					{
-						if (Main.rand.Next(0,11) == 0)
-						{ SetMove(Move.LaserStart, 60); }
+						if (Main.rand.Next(0,1) == 0)
+						{ 
+							SetMove(Move.LaserStart, 60);
+						}
 						else { SetMove(Move.BoltFire, 0); }
 					}
 				}
@@ -121,7 +123,7 @@ namespace Emperia.Bosses.Inquisitor
 					Emperia.CreateProjectile<Projectiles.FearBolt>(mod, npc.Center, vecu, 5, 0);
 					Emperia.CreateProjectile<Projectiles.FearBolt>(mod, npc.Center, vecd, 5, 0);
 					
-					SetMove(Move.Floating, Main.rand.Next(180, 240));
+					SetMove(Move.Floating, Main.rand.Next(90, 120));
 				}
 				if (move == Move.LaserStart)
 				{
@@ -131,18 +133,22 @@ namespace Emperia.Bosses.Inquisitor
 					
 					if (counter <= 0)
 					{
-						SetMove(Move.LaserDuring, 180);
+						SetMove(Move.LaserDuring, 1);
 					}
 				}
 				if (move == Move.LaserDuring)
 				{
 					counter--;
 					
-					//set the sprite to laser firing, fire the laser
+					Vector2 vec = Vector2.Normalize(player.Center - npc.Center) * 6;
+					//for (int numProj = 0; numProj <= 4; numProj++)
+					//{
+						Emperia.CreateProjectile<Projectiles.FearLaser>(mod, npc.Center, vec, 1, 10f);
+					//}
 					
 					if (counter <= 0)
 					{
-						SetMove(Move.Floating, Main.rand.Next(240, 360));
+						SetMove(Move.Floating, Main.rand.Next(180, 240));
 					}
 				}
 				//if (npc.life <= npc.lifeMax * .5f)

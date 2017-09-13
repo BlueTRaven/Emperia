@@ -31,7 +31,7 @@ namespace Emperia.Projectiles
             direction = player.Center - projectile.Center;
 			direction.Normalize();
 			projectile.velocity = direction * 12f;
-			 int dust = Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 74, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
+			int dust = Dust.NewDust(projectile.position + projectile.velocity, projectile.width, projectile.height, 74, projectile.velocity.X * 0.5f, projectile.velocity.Y * 0.5f);
             Main.dust[dust].scale = 2f;
             Main.dust[dust].noGravity = true;
             if (projectile.position.X > player.position.X - 20 && projectile.position.X < player.position.X + 20 && projectile.position.Y > player.position.Y - 20 && projectile.position.Y < player.position.Y + 20)
