@@ -9,6 +9,7 @@ using Microsoft.Xna.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using System.IO;
+using System.Drawing;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria.UI;
 using Terraria.DataStructures;
@@ -18,6 +19,7 @@ namespace Emperia
 {
     public class Emperia : Mod
     {
+		public static Texture2D whiteTexture;
         public static BasicEffect basicEffect { get; private set; }
 		internal static Emperia instance;
         public Emperia()
@@ -29,7 +31,6 @@ namespace Emperia
                 AutoloadSounds = true,
                 AutoloadBackgrounds = true
             };
-
          
         }
 		public override void Load()
@@ -41,6 +42,8 @@ namespace Emperia
 				Filters.Scene["Emperia:Twilight"] = new Filter(new TwilightScreenShaderData("FilterMiniTower").UseColor(1f, 0.5f, 1f).UseOpacity(0.4f), EffectPriority.VeryHigh);
 				//SkyManager.Instance["Emperia:Bloom"] = new PuritySpiritSky();
 
+				whiteTexture = Drawing.FromFile("\\Emperia\\whitePixel.png", false);
+				basicEffect.Texture = whiteTexture;
 			}
 		}
 		public override void UpdateMusic(ref int music)
