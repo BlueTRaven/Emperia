@@ -20,17 +20,6 @@ namespace Emperia
     {
         public static BasicEffect basicEffect { get; private set; }
 		internal static Emperia instance;
-		GraphicsDevice device = Main.graphics.GraphicsDevice;
-        Texture2D whitePixel = new Texture2D(device, 1, 1);
-
-        BasicEffect whiteTexture = new BasicEffect(device);
-        whiteTexture.VertexColorEnabled = true;
-        whiteTexture.TextureEnabled = true;
-        whiteTexture.Projection = Matrix.CreateOrthographicOffCenter
-            (0, Main.graphics.GraphicsDevice.Viewport.Width,     // left, right
-            Main.graphics.GraphicsDevice.Viewport.Height, 0,    // bottom, top
-            0, 1);
-           whiteTexture.Texture = whitePixel;  //give it the white pixel texture
         public Emperia()
         {
             Properties = new ModProperties()
@@ -51,6 +40,17 @@ namespace Emperia
 				Filters.Scene["Emperia:Twilight"] = new Filter(new TwilightScreenShaderData("FilterMiniTower").UseColor(1f, 0.5f, 1f).UseOpacity(0.4f), EffectPriority.VeryHigh);
 				//SkyManager.Instance["Emperia:Bloom"] = new PuritySpiritSky();
 			}
+			GraphicsDevice device = Main.graphics.GraphicsDevice;
+			Texture2D whitePixel = new Texture2D(device, 1, 1);
+
+			BasicEffect whiteTexture = new BasicEffect(device);
+			whiteTexture.VertexColorEnabled = true;
+			whiteTexture.TextureEnabled = true;
+			whiteTexture.Projection = Matrix.CreateOrthographicOffCenter
+				(0, Main.graphics.GraphicsDevice.Viewport.Width,     // left, right
+				Main.graphics.GraphicsDevice.Viewport.Height, 0,    // bottom, top
+				0, 1);
+			whiteTexture.Texture = whitePixel;  //give it the white pixel texture
 		}
 		public override void UpdateMusic(ref int music)
 		{
