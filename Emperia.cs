@@ -22,6 +22,17 @@ namespace Emperia
 		public static Texture2D whiteTexture;
         public static BasicEffect basicEffect { get; private set; }
 		internal static Emperia instance;
+		 GraphicsDevice device = Main.graphics.GraphicsDevice;
+          Texture2D whitePixel = new Texture2D(device, 1, 1);
+
+           basicEffect = new BasicEffect(Main.graphics.GraphicsDevice);
+           basicEffect.VertexColorEnabled = true;
+           basicEffect.TextureEnabled = true;
+           basicEffect.Projection = Matrix.CreateOrthographicOffCenter
+                (0, Main.graphics.GraphicsDevice.Viewport.Width,     // left, right
+                Main.graphics.GraphicsDevice.Viewport.Height, 0,    // bottom, top
+                0, 1);
+           basicEffect.Texture = whitePixel;  //give it the white pixel texture
         public Emperia()
         {
             Properties = new ModProperties()
