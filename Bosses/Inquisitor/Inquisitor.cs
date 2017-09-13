@@ -5,8 +5,7 @@ using Microsoft.Xna.Framework.Graphics;
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-
-
+using Emperia.Utility;
 
 namespace Emperia.Bosses.Inquisitor
 {
@@ -106,7 +105,7 @@ namespace Emperia.Bosses.Inquisitor
 					
 					if (counter <= 0)
 					{
-						if (Main.rand.Next(0,1) == 0)
+						if (Main.rand.Next(2) == 0)
 						{ 
 							SetMove(Move.LaserStart, 60);
 						}
@@ -127,28 +126,20 @@ namespace Emperia.Bosses.Inquisitor
 				}
 				if (move == Move.LaserStart)
 				{
-					counter--;
-					
-					//set the sprite to laser charging
-					
-					if (counter <= 0)
-					{
-						SetMove(Move.LaserDuring, 1);
-					}
+					Emperia.CreateProjectile<Projectiles.DelayedLaser>(mod, npc.Center, Vector2.Zero, 20, 0, Main.myPlayer, npc.whoAmI, 180 + VectorHelper.GetAngleBetweenPoints(player.Center, npc.Center)).Create(120, 60, 4, 32, new Color(201, 34, 97), new Color(255, 193, 208), new Color(201, 34, 97));
+					SetMove(Move.LaserDuring, 200);
+					//counter = 200;
+					//move = Move.LaserDuring;
 				}
 				if (move == Move.LaserDuring)
 				{
 					counter--;
-					
-					Vector2 vec = Vector2.Normalize(player.Center - npc.Center) * 6;
-					//for (int numProj = 0; numProj <= 4; numProj++)
-					//{
-						Emperia.CreateProjectile<Projectiles.FearLaser>(mod, npc.Center, vec, 1, 10f);
-					//}
-					
+
 					if (counter <= 0)
 					{
-						SetMove(Move.Floating, Main.rand.Next(180, 240));
+
+						
+						SetMove(Move.Teleporting, 0);// move = Move.Teleporting;
 					}
 				}
 				//if (npc.life <= npc.lifeMax * .5f)
