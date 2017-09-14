@@ -126,7 +126,7 @@ namespace Emperia.Bosses.Inquisitor
 				}
 				if (move == Move.LaserStart)
 				{
-					Emperia.CreateProjectile<Projectiles.FearLaser>(mod, npc.Center, Vector2.Zero, 20, 0, Main.myPlayer, npc.whoAmI);
+					Emperia.CreateProjectile<Projectiles.FearLaser>(mod, npc.Center, Vector2.Zero, 20, 0, Main.myPlayer, npc.whoAmI, player);
 					SetMove(Move.LaserDuring, 200);
 					//counter = 200;
 					//move = Move.LaserDuring;

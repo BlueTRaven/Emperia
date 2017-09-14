@@ -103,7 +103,7 @@ namespace Emperia.Projectiles
         {
  
             Vector2 mousePos = Main.MouseWorld;
-            Player player = Main.player[projectile.owner];
+            ModNPC player = ai[0];
  
             #region Set projectile position
             if (projectile.owner == Main.myPlayer) // Multiplayer support
