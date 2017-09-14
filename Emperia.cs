@@ -43,14 +43,14 @@ namespace Emperia
 			GraphicsDevice device = Main.graphics.GraphicsDevice;
 			Texture2D whitePixel = new Texture2D(device, 1, 1);
 
-			BasicEffect whiteTexture = new BasicEffect(device);
-			whiteTexture.VertexColorEnabled = true;
-			whiteTexture.TextureEnabled = true;
-			whiteTexture.Projection = Matrix.CreateOrthographicOffCenter
+			BasicEffect basicEffect = new BasicEffect(device);
+			basicEffect.VertexColorEnabled = true;
+			basicEffect.TextureEnabled = true;
+			basicEffect.Projection = Matrix.CreateOrthographicOffCenter
 				(0, Main.graphics.GraphicsDevice.Viewport.Width,     // left, right
 				Main.graphics.GraphicsDevice.Viewport.Height, 0,    // bottom, top
 				0, 1);
-			whiteTexture.Texture = whitePixel;  //give it the white pixel texture
+			basicEffect.Texture = whitePixel;  //give it the white pixel texture
 		}
 		public override void UpdateMusic(ref int music)
 		{

@@ -126,7 +126,7 @@ namespace Emperia.Bosses.Inquisitor
 				}
 				if (move == Move.LaserStart)
 				{
-					Emperia.CreateProjectile<Projectiles.DelayedLaser>(mod, npc.Center, Vector2.Zero, 20, 0, Main.myPlayer, npc.whoAmI, 180 + VectorHelper.GetAngleBetweenPoints(player.Center, npc.Center)).Create(120, 60, 4, 32, new Color(201, 34, 97), new Color(255, 193, 208), new Color(201, 34, 97));
+					Emperia.CreateProjectile<Projectiles.FearLaser>(mod, npc.Center, Vector2.Zero, 20, 0, Main.myPlayer, npc.whoAmI);
 					SetMove(Move.LaserDuring, 200);
 					//counter = 200;
 					//move = Move.LaserDuring;
