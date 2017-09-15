@@ -15,8 +15,7 @@ namespace Emperia.Bosses.Inquisitor
         {
             Teleporting,
             AfterTeleport,
-            LaserStart,
-            LaserDuring,
+            LaserFiring,
             BoltFire,
             PhaseTransitionStart,
             Floating
@@ -25,17 +24,19 @@ namespace Emperia.Bosses.Inquisitor
         private Move move { get { return (Move)npc.ai[0]; } set { npc.ai[0] = (int)value; } }
         private Move prevMove;
 		
-		private int counter;
+	private int counter;
 
-		private Vector2 targetPosition;
+	private Vector2 targetPosition;
+	
+	private int laserSweep = 60;
 
         private bool phaseStart;
         private bool phaseEnd;
-		public override void SetStaticDefaults()
-		{
-			DisplayName.SetDefault("The Inquisitor");
-			Main.npcFrameCount[npc.type] = 1;
-		}
+	public override void SetStaticDefaults()
+	{
+		DisplayName.SetDefault("The Inquisitor");
+		Main.npcFrameCount[npc.type] = 1;
+	}
         public override void SetDefaults()
         {
             npc.aiStyle = -1;
@@ -107,7 +108,7 @@ namespace Emperia.Bosses.Inquisitor
 					{
 						if (Main.rand.Next(2) == 0)
 						{ 
-							SetMove(Move.LaserStart, 60);
+							SetMove(Move.LaserFiring, 60);
 						}
 						else { SetMove(Move.BoltFire, 0); }
 					}
@@ -124,21 +125,21 @@ namespace Emperia.Bosses.Inquisitor
 					
 					SetMove(Move.Floating, Main.rand.Next(90, 120));
 				}
-				if (move == Move.LaserStart)
-				{
-					Emperia.CreateProjectile<Projectiles.FearLaser>(mod, npc.Center, player.Center, 20, 0f, npc.whoAmI, (float)Main.player[npc.target], 0);
-					SetMove(Move.LaserDuring, 200);
-					//counter = 200;
-					//move = Move.LaserDuring;
-				}
 				if (move == Move.LaserDuring)
 				{
 					counter--;
 
+					for (int l = -laserSweep; l <= laserSweep; l++)
+					{
+						Vector2 vec = Vector2.Normalize(player.Center - npc.Center) * 6;
+						Vector2 vecu = Vector2.Transform(vec, Matrix.CreateRotationZ(MathHelper.ToRadians(-8)));
+						Vector2 vecd = Vector2.Transform(vec, Matrix.CreateRotationZ(MathHelper.ToRadians(8)));
+						Projectile.NewProjectile(npc.Center.X, npc.Center.Y, player.Center.X, player.Center.Y, mod.ProjectileType("FearLaser"), 200, 10f, player.whoAmI, ai1: 36 * i);
+						SetMove(Move.LaserDuring, 200);
+					}
+
 					if (counter <= 0)
 					{
-
-						
 						SetMove(Move.Teleporting, 0);// move = Move.Teleporting;
 					}
 				}
