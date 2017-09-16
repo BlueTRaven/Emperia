@@ -20,6 +20,7 @@ namespace Emperia
     {
         public static BasicEffect basicEffect { get; private set; }
 		internal static Emperia instance;
+		public static ModHotKey AccessoryKey;
         public Emperia()
         {
             Properties = new ModProperties()
@@ -34,6 +35,7 @@ namespace Emperia
 		public override void Load()
 		{
 			instance = this;
+			AccessoryKey = RegisterHotKey("Accessory Effects", "Q");
 			if (!Main.dedServ)
 			{
 				Filters.Scene["Emperia:warudo"] = new Filter(new ZaWARUDO("FilterMiniTower").UseColor(0.12f, 1f, 0.4f).UseOpacity(0.7f), EffectPriority.VeryHigh);

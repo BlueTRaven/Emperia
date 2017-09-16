@@ -1,12 +1,18 @@
 using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
 using System.IO;
+using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Terraria;
-using Terraria.DataStructures;
 using Terraria.ID;
 using Terraria.ModLoader;
+using Terraria.DataStructures;
+using Terraria.Graphics.Shaders;
+using Terraria.ModLoader.IO;
+using Terraria.GameInput;
 using Emperia;
 using Emperia.Projectiles;
 
@@ -39,6 +45,9 @@ namespace Emperia
 		public static bool theWorld = false;
 		public bool skullLightPet = false;
 		public bool mystiqueSetBonus = false;
+		public bool Dominion = false;
+		public int noDeathTimer = 0;
+		public int dominionCooldown = 0;
 		int damageCount = 0;
 		int counter = 0;
 
@@ -69,6 +78,8 @@ namespace Emperia
 
         public override void PostUpdate()
         {
+			dominionCooldown--;
+			noDeathTimer--;
             if (enchanted)
             {
                 for (int i = 0; i < Main.rand.Next(enchantedStacks) + 1; i++)
@@ -114,7 +125,32 @@ namespace Emperia
 				//player.ManageSpecialBiomeVisuals("Emperia:Bloom", true, player.Center);
 
 		}
-		
+		public override void ProcessTriggers(TriggersSet triggersSet)
+        {
+            if (Dominion)
+            {
+                if (Emperia.AccessoryKey.JustPressed)
+                {
+					if (dominionCooldown > 0)
+					{
+						Main.NewText("This ability is on cooldown! Usable again in " + (dominionCooldown / 60) + " seconds.");
+					}
+					else
+					{
+						noDeathTimer = 360;
+						dominionCooldown = 3600;
+					}
+				}
+			}
+		}
+		public override bool PreKill(double damage, int hitDirection, bool pvp, ref bool playSound, ref bool genGore, ref PlayerDeathReason damageSource)
+        {
+			if (noDeathTimer > 0)
+			{
+				return false;
+			}
+			return true;
+		}
 		public override void PreUpdate()
 		{
 			if (Scourge)
