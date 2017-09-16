@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -9,7 +9,7 @@ using Terraria.Enums;
  
 namespace Emperia.Projectiles
 {
-    public class FearLaser : ModProjectile
+    //public class FearLaser : ModProjectile
     {
         private Vector2 _targetPos;         //Ending position of the laser beam
         private int _charge;                //The charge level of the weapon
@@ -82,7 +82,7 @@ namespace Emperia.Projectiles
             {
                 Vector2 npcCenter = Main.player[projectile.owner].Center;
                 float point = 0f;
-                Vector2 endPoint = Main.player[npc.target].position;
+                Vector2 endPoint = Main.player[projectile.owner].position;
                 bool colliding = Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), npcCenter, npcCenter + endPoint, maxThickness, ref point);
                 if (colliding)
                 {
@@ -172,4 +172,4 @@ namespace Emperia.Projectiles
        
  
     }
-}
+}*/

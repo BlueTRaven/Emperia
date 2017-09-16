@@ -16,6 +16,7 @@ namespace Emperia.Bosses.Inquisitor
             Teleporting,
             AfterTeleport,
             LaserFiring,
+			LaserDuring,
             BoltFire,
             PhaseTransitionStart,
             Floating
@@ -134,7 +135,7 @@ namespace Emperia.Bosses.Inquisitor
 						Vector2 vec = Vector2.Normalize(player.Center - npc.Center) * 6;
 						Vector2 vecu = Vector2.Transform(vec, Matrix.CreateRotationZ(MathHelper.ToRadians(-8)));
 						Vector2 vecd = Vector2.Transform(vec, Matrix.CreateRotationZ(MathHelper.ToRadians(8)));
-						Projectile.NewProjectile(npc.Center.X, npc.Center.Y, player.Center.X, player.Center.Y, mod.ProjectileType("FearLaser"), 200, 10f, player.whoAmI, ai1: 36 * i);
+						Projectile.NewProjectile(npc.Center.X, npc.Center.Y, player.Center.X, player.Center.Y, mod.ProjectileType("FearLaser"), 200, 10f, player.whoAmI, ai1: 36 * l);
 						SetMove(Move.LaserDuring, 200);
 					}
 
