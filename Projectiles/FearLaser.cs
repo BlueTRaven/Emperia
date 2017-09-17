@@ -1,4 +1,4 @@
-/*using System;
+using System;
 using System.Collections.Generic;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
@@ -9,17 +9,17 @@ using Terraria.Enums;
  
 namespace Emperia.Projectiles
 {
-    //public class FearLaser : ModProjectile
+    public class FearLaser : ModProjectile
     {
         private Vector2 _targetPos;         //Ending position of the laser beam
         private int _charge;                //The charge level of the weapon
         private float _moveDist = 45f;       //The distance charge particle from the player center
-
-        public override void SetStaticDefaults()
-        {
-            DisplayName.SetDefault("Fear Laser");
-        }
-
+		
+		public override void SetStaticDefaults()
+		{
+			DisplayName.SetDefault("Fear Laser");
+		}
+ 
         public override void SetDefaults()
         {
             projectile.width = 10;
@@ -27,7 +27,6 @@ namespace Emperia.Projectiles
             projectile.friendly = false;     //this defines if the projectile is frendly
             projectile.penetrate = -1;  //this defines the projectile penetration, -1 = infinity
             projectile.tileCollide = false;   //this defines if the tile can colide with walls
-            projectile.magic = true;
             projectile.hide = true;
         }
  
@@ -80,20 +79,24 @@ namespace Emperia.Projectiles
         {
             if (_charge == 100)
             {
-                Vector2 npcCenter = Main.player[projectile.owner].Center;
+                Player p = Main.player[projectile.owner];
+                Vector2 unit = (Main.player[projectile.owner].Center - _targetPos);
+                unit.Normalize();
                 float point = 0f;
-                Vector2 endPoint = Main.player[projectile.owner].position;
-                bool colliding = Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), npcCenter, npcCenter + endPoint, maxThickness, ref point);
-                if (colliding)
+                if (Collision.CheckAABBvLineCollision(targetHitbox.TopLeft(), targetHitbox.Size(), p.Center - 95f * unit, p.Center - unit * _moveDist, 22, ref point))
                 {
-                    Vector2 spawn = (Vector2.Normalize(endPoint) * point) + npcCenter;
-
-                    for (int i = 0; i < Main.rand.Next(1, 16); i++)
-                        Dust.NewDust(spawn, 4, 4, 6);
+                    return true;
                 }
-                return colliding;
             }
             return false;
+        }
+ 
+        /// <summary>
+        /// Change the behavior after hit a NPC
+        /// </summary>
+        public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
+        {
+            target.immune[projectile.owner] = 5;
         }
  
         /// <summary>
@@ -101,27 +104,61 @@ namespace Emperia.Projectiles
         /// </summary>
         public override void AI()
         {
-            ModNPC player = ai[0];
+ 
+            Vector2 mousePos = Main.MouseWorld;
+            Player player = Main.player[projectile.owner];
+ 
+            #region Set projectile position
+            if (projectile.owner == Main.myPlayer) // Multiplayer support
+            {
+                Vector2 diff = mousePos - player.Center;
+                diff.Normalize();
+                projectile.position = player.Center + diff * _moveDist;
+                projectile.timeLeft = 2;
+                int dir = projectile.position.X > player.position.X ? 1 : -1;
+                player.ChangeDir(dir);
+                player.heldProj = projectile.whoAmI;
+                player.itemTime = 2;
+                player.itemAnimation = 2;
+                player.itemRotation = (float)Math.Atan2(diff.Y * dir, diff.X * dir);
+                projectile.soundDelay--;
+                #endregion
+            }
  
  
             #region Charging process
-            Vector2 dustPos = player.Center + new Vector2(0, -10);
-            if (_charge < 100)
+            // Kill the projectile if the player stops channeling
+            if (!player.channel)
             {
-                _charge++;
+                projectile.Kill();
             }
-            int chargeFact = _charge / 20;
-            Vector2 dustVelocity = Vector2.UnitX * 18f;
-            dustVelocity = dustVelocity.RotatedBy(projectile.rotation - 1.57f, default(Vector2));
-            Vector2 spawnPos = projectile.Center + dustVelocity;
-            for (int k = 0; k < chargeFact + 1; k++)
+            else
             {
-                Vector2 spawn = spawnPos + ((float)Main.rand.NextDouble() * 6.28f).ToRotationVector2() * (12f - (chargeFact * 2));
-                Dust dust = Main.dust[Dust.NewDust(dustPos, 30, 30, 235, projectile.velocity.X / 2f,    //this 30, 30 is the dust weight and height 235 is the tail dust    
-                    projectile.velocity.Y / 2f, 0, default(Color), 1f)];
-                dust.velocity = Vector2.Normalize(spawnPos - spawn) * 1.5f * (10f - chargeFact * 2f) / 10f;
-                dust.noGravity = true;
-                dust.scale = Main.rand.Next(10, 20) * 0.05f;
+                if (Main.time % 10 < 1 && !player.CheckMana(player.inventory[player.selectedItem].mana, true))
+                {
+                    projectile.Kill();
+                }
+                Vector2 offset = mousePos - player.Center;
+                offset.Normalize();
+                offset *= _moveDist - 20;
+                Vector2 dustPos = player.Center + offset - new Vector2(10, 10);
+                if (_charge < 100)
+                {
+                    _charge++;
+                }
+                int chargeFact = _charge / 20;
+                Vector2 dustVelocity = Vector2.UnitX * 18f;
+                dustVelocity = dustVelocity.RotatedBy(projectile.rotation - 1.57f, default(Vector2));
+                Vector2 spawnPos = projectile.Center + dustVelocity;
+                for (int k = 0; k < chargeFact + 1; k++)
+                {
+                    Vector2 spawn = spawnPos + ((float)Main.rand.NextDouble() * 6.28f).ToRotationVector2() * (12f - (chargeFact * 2));
+                    Dust dust = Main.dust[Dust.NewDust(dustPos, 30, 30, 235, projectile.velocity.X / 2f,    //this 30, 30 is the dust weight and height 235 is the tail dust    
+                        projectile.velocity.Y / 2f, 0, default(Color), 1f)];
+                    dust.velocity = Vector2.Normalize(spawnPos - spawn) * 1.5f * (10f - chargeFact * 2f) / 10f;
+                    dust.noGravity = true;
+                    dust.scale = Main.rand.Next(10, 20) * 0.05f;
+                }
             }
             #endregion
  
@@ -172,4 +209,4 @@ namespace Emperia.Projectiles
        
  
     }
-}*/
+}
