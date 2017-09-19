@@ -105,25 +105,22 @@ namespace Emperia.Projectiles
         public override void AI()
         {
  
-            Vector2 mousePos = Main.MouseWorld;
+            Vector2 mousePos = projectile.ai[0].position;
             Player player = Main.player[projectile.owner];
  
             #region Set projectile position
-            if (projectile.owner == Main.myPlayer) // Multiplayer support
-            {
-                Vector2 diff = mousePos - player.Center;
-                diff.Normalize();
-                projectile.position = player.Center + diff * _moveDist;
-                projectile.timeLeft = 2;
-                int dir = projectile.position.X > player.position.X ? 1 : -1;
-                player.ChangeDir(dir);
-                player.heldProj = projectile.whoAmI;
-                player.itemTime = 2;
-                player.itemAnimation = 2;
-                player.itemRotation = (float)Math.Atan2(diff.Y * dir, diff.X * dir);
-                projectile.soundDelay--;
-                #endregion
-            }
+            Vector2 diff = mousePos - player.Center;
+            diff.Normalize();
+            projectile.position = player.Center + diff * _moveDist;
+            projectile.timeLeft = 2;
+            /*int dir = projectile.position.X > player.position.X ? 1 : -1;
+            player.ChangeDir(dir);
+            player.heldProj = projectile.whoAmI;
+            player.itemTime = 2;
+            player.itemAnimation = 2;
+            player.itemRotation = (float)Math.Atan2(diff.Y * dir, diff.X * dir);*/
+            projectile.soundDelay--;
+            #endregion
  
  
             #region Charging process
@@ -134,10 +131,6 @@ namespace Emperia.Projectiles
             }
             else
             {
-                if (Main.time % 10 < 1 && !player.CheckMana(player.inventory[player.selectedItem].mana, true))
-                {
-                    projectile.Kill();
-                }
                 Vector2 offset = mousePos - player.Center;
                 offset.Normalize();
                 offset *= _moveDist - 20;
