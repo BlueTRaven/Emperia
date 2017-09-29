@@ -30,7 +30,7 @@ namespace Emperia.Weapons.Color1   //where is located
             item.rare = 5;
 			item.UseSound = SoundID.Item1;
 			item.shoot = mod.ProjectileType("DuskProj");
-			item.shootSpeed = 10f;
+			item.shootSpeed = 13f;
 			item.scale = 1f;
             item.autoReuse = true;   //if it's capable of autoswing.
             item.useTurn = true;             //projectile speed                 
@@ -66,7 +66,7 @@ namespace Emperia.Weapons.Color1   //where is located
 		}
 		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type1, ref int damage, ref float knockBack)
 		{
-			damage = damage / 2;
+			damage = damage;
 			return true;
 		}
     }

@@ -44,11 +44,32 @@ namespace Emperia.Drops
 						Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("CosmicObliterator"), 1);
 					}
 				}
-				if(npc.type == 84)
+				if(npc.type == 84 && !Main.expertMode)
 				{
-					 if (Main.rand.Next(4) == 0) 
+					 if (Main.rand.Next(10) == 0) 
 					 {
-						 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("FaerieSpark"), Main.rand.Next(3, 7)); 
+						 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ShardOfAnimation")); 
+					 }
+				}
+				if(npc.type == 84 && Main.expertMode)
+				{
+					 if (Main.rand.Next(8) == 0) 
+					 {
+						 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ShardOfAnimation")); 
+					 }
+				}
+				if(npc.type == 140 && !Main.expertMode)
+				{
+					 if (Main.rand.Next(100) == 0) 
+					 {
+						 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ShardOfPossesion")); 
+					 }
+				}
+				if(npc.type == 84 && Main.expertMode)
+				{
+					 if (Main.rand.Next(65) == 0) 
+					 {
+						 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ShardOfPossesion")); 
 					 }
 				}
 				if (npc.type == mod.NPCType("Dwindler") && Main.rand.Next(100) == 0 && !Main.expertMode)
