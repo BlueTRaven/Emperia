@@ -105,7 +105,7 @@ namespace Emperia.Projectiles
         public override void AI()
         {
  
-            Vector2 mousePos = projectile.ai[0].position;
+            Vector2 mousePos = Main.player[(int)projectile.ai[0]].position;
             Player player = Main.player[projectile.owner];
  
             #region Set projectile position

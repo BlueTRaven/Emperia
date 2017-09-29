@@ -68,6 +68,7 @@
     <Compile Include="Emperia.cs" />
     <Compile Include="EmperialWorld.cs" />
     <Compile Include="GlobalNPC1.cs" />
+    <Compile Include="Inquisitor.cs" />
     <Compile Include="Items\RottenMushroom.cs" />
     <Compile Include="Items\RuinedChest.cs" />
     <Compile Include="Items\RuinedKey.cs" />
