@@ -58,7 +58,7 @@ namespace Emperia.Bosses.Inquisitor
             npc.HitSound = SoundID.NPCHit1; //57 //20
             npc.DeathSound = SoundID.NPCDeath1;
             npc.buffImmune[24] = true;
-			npc.ai[3] = 0; //phase: 0 is first, 1 is second
+			npc.ai[3] = 0; //phase: 0 is creation, 1 is first, 2 is second
 			npc.frameCounter = 0;
 			
             npc.netAlways = true;
@@ -91,7 +91,14 @@ namespace Emperia.Bosses.Inquisitor
 				player = Main.player[npc.target];
 			}
 		
-			if (npc.ai[3] == 0)
+            if (npc.ai[3] == 0)
+            {
+                NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, mod.NPCType<SorrowMask>(), ai0: player.whoAmI);
+                NPC.NewNPC((int)npc.Center.X + 20, (int)npc.Center.Y, mod.NPCType<AgonyMask>(), ai0: player.whoAmI);
+                npc.ai[3] = 0;
+            }
+
+			else if (npc.ai[3] == 1)
 			{
 				if (move == Move.Floating)
 				{
@@ -114,11 +121,13 @@ namespace Emperia.Bosses.Inquisitor
 					
 					if (counter <= 0)
 					{
-						if (Main.rand.Next(2) == 0)
-						{ 
-							SetMove(Move.LaserFiring, 60);
-						}
-						else { SetMove(Move.BoltFire, 0); }
+						//if (Main.rand.Next(2) == 0)
+						//{ 
+						//	SetMove(Move.LaserFiring, 60);
+						//}
+						//else {
+                           SetMove(Move.BoltFire, 0);
+                        //}
 					}
 				}
 				if (move == Move.BoltFire)
@@ -155,7 +164,7 @@ namespace Emperia.Bosses.Inquisitor
 				//	npc.ai[3] = 1;    <second phase stuff
 				//}
 			}
-			//else if (npc.ai[3] == 1)
+			//else if (npc.ai[3] == 2)
 			//{
 			//	
 			//}

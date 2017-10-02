@@ -8,14 +8,14 @@ using Terraria.ModLoader;
 
 namespace Emperia.Bosses.Inquisitor
 {
-    public class AgonyMask : ModNPC
+    public class SorrowMask : ModNPC
     {
 		
         private Vector2 targetPosition;
         private float rotate { get { return npc.ai[1]; } set { npc.ai[1] = value; } }
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Agony");
+			DisplayName.SetDefault("Sorrow");
 			Main.npcFrameCount[npc.type] = 1;
 		}
         public override void SetDefaults()
@@ -49,7 +49,7 @@ namespace Emperia.Bosses.Inquisitor
         {
             npc.TargetClosest(true);
             Player player = Main.player[(int)npc.ai[0]];
-            int num250 = Dust.NewDust(new Vector2(npc.position.X - npc.velocity.X, npc.position.Y - npc.velocity.Y), npc.width, npc.height, 5, (float)(npc.direction * 2), 0f, 158, new Color(53f, 67f, 253f), 1.3f);
+			int num250 = Dust.NewDust(new Vector2(npc.position.X - npc.velocity.X, npc.position.Y - npc.velocity.Y), npc.width, npc.height, 5, (float)(npc.direction * 2), 0f, 158, new Color(53f, 67f, 253f), 1.3f);
 			Main.dust[num250].noGravity = true;
 			Main.dust[num250].velocity *= 0f;
 			if (npc.position.Y > Main.player[npc.target].position.Y)
