@@ -10,7 +10,8 @@ namespace Emperia.Bosses.Inquisitor
 {
     public class SorrowMask : ModNPC
     {
-		
+        private int counter = -1;
+
         private Vector2 targetPosition;
         private float rotate { get { return npc.ai[1]; } set { npc.ai[1] = value; } }
 		public override void SetStaticDefaults()
@@ -47,48 +48,36 @@ namespace Emperia.Bosses.Inquisitor
 
         public override void AI()
         {
-            npc.TargetClosest(true);
-            Player player = Main.player[npc.target];
+            Player player = Main.player[(int)npc.ai[0]];
 			int num250 = Dust.NewDust(new Vector2(npc.position.X - npc.velocity.X, npc.position.Y - npc.velocity.Y), npc.width, npc.height, 5, (float)(npc.direction * 2), 0f, 158, new Color(53f, 67f, 253f), 1.3f);
 			Main.dust[num250].noGravity = true;
 			Main.dust[num250].velocity *= 0f;
-			if (npc.position.Y > Main.player[npc.target].position.Y)
-			{
-				if (npc.velocity.Y > -1f)
-					npc.velocity.Y = npc.velocity.X - 0.75f;
-				if (npc.velocity.Y > -5f && npc.velocity.Y < 0f)
-				{
-					npc.velocity.Y *= 1.03f;
-				}
-			}
-			if (npc.position.Y < Main.player[npc.target].position.Y)
-			{
-				if (npc.velocity.Y < 1f)
-					npc.velocity.Y = npc.velocity.Y + 0.75f;
-				if (npc.velocity.Y < 5f && npc.velocity.Y > 0f)
-				{
-					npc.velocity.Y *= 1.03f;
-				}
-			}
-			if (npc.position.X > Main.player[npc.target].position.X)
-			{
-				if (npc.velocity.X > -1f)
-					npc.velocity.X = npc.velocity.X - 0.75f;
-				if (npc.velocity.X > -5f && npc.velocity.X < 0f)
-				{
-					npc.velocity.X *= 1.03f;
-				}
-			}
-			if (npc.position.X < Main.player[npc.target].position.X)
-			{
-				if (npc.velocity.X < 1f)
-					npc.velocity.X = npc.velocity.X + 0.75f;
-				if (npc.velocity.X < 5f && npc.velocity.X > 0f)
-				{
-					npc.velocity.X *= 1.03f;
-				}
-			}
-			
+            if (counter == -1)
+            {
+                Vector2 targetPosition = new Vector2(player.position.X + Main.rand.Next(-512, 512), player.position.Y + Main.rand.Next(100, 512));
+                SmoothMoveToPosition(targetPosition, 250, 1000);
+                counter++;
+            } else if (counter % 60 == 0)
+            {
+                Projectile.NewProjectile(npc.Center, player.position, 389, 15, 2f);
+                counter++;
+            } else if (counter > 300) {
+                counter = -1;
+            } else { counter++; 
+        }
+
+        private void SmoothMoveToPosition(Vector2 toPosition, float addSpeed, float maxSpeed, float slowRange = 64, float slowBy = .95f)
+        {
+            if (Math.Abs((toPosition - npc.Center).Length()) >= slowRange)
+            {
+                npc.velocity += Vector2.Normalize((toPosition - npc.Center) * addSpeed);
+                npc.velocity.X = MathHelper.Clamp(npc.velocity.X, -maxSpeed, maxSpeed);
+                npc.velocity.Y = MathHelper.Clamp(npc.velocity.Y, -maxSpeed, maxSpeed);
+            }
+            else
+            {
+                npc.velocity *= slowBy;
+            }
         }
     }
 }
