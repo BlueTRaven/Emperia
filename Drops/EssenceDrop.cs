@@ -72,6 +72,20 @@ namespace Emperia.Drops
 						 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ShardOfPossesion")); 
 					 }
 				}
+				if(!Main.expertMode && npc.type == 53 || npc.type == 536 || npc.type == 489 || npc.type == 490 || npc.type == 47 || npc.type == 464 || npc.type == 57 || npc.type == 465 || npc.type == 189 || npc.type == 470 || npc.type == 109)
+				{
+					 if (Main.rand.Next(100) == 0) 
+					 {
+						 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ForbiddenOath")); 
+					 }
+				}
+				if(Main.expertMode && npc.type == 53 || npc.type == 536 || npc.type == 489 || npc.type == 490 || npc.type == 47 || npc.type == 464 || npc.type == 57 || npc.type == 465 || npc.type == 189 || npc.type == 470 || npc.type == 109)
+				{
+					 if (Main.rand.Next(65) == 0) 
+					 {
+						 Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("ForbiddenOath")); 
+					 }
+				}
 				if (npc.type == mod.NPCType("Dwindler") && Main.rand.Next(100) == 0 && !Main.expertMode)
 				{
 					Item.NewItem((int)npc.position.X, (int)npc.position.Y, npc.width, npc.height, mod.ItemType("MaskoftheDecrepit")); 

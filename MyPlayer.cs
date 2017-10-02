@@ -46,8 +46,10 @@ namespace Emperia
 		public bool skullLightPet = false;
 		public bool mystiqueSetBonus = false;
 		public bool Dominion = false;
+		public bool forbiddenOath = false;
 		public int noDeathTimer = 0;
 		public int dominionCooldown = 0;
+		public int OathCooldown = 480;
 		int damageCount = 0;
 		int counter = 0;
 
@@ -74,11 +76,24 @@ namespace Emperia
 			damageAvoid = false;
 			theWorld = false;
 			mystiqueSetBonus = false;
+			forbiddenOath = false;
         }
 
         public override void PostUpdate()
         {
+			int playerLifeThreshold = player.statLifeMax2 / 5;
 			dominionCooldown--;
+			if (forbiddenOath && player.statLife <= playerLifeThreshold)
+			{
+				OathCooldown--;
+				Main.NewText(playerLifeThreshold);
+			}
+			if (OathCooldown <= 0)
+			{
+				player.HealEffect(10);
+				player.statLife += 10;
+				OathCooldown = 480;
+			}
 			noDeathTimer--;
             if (enchanted)
             {
@@ -95,7 +110,7 @@ namespace Emperia
             {
                 player.jump = 0;
                 //player.velocity.Y = Math.Abs(player.velocity.Y);
-            }
+			}
 			if (theWorld)
 			{
 				for (int x = 0; x <= 100; x++)

@@ -29,9 +29,9 @@ namespace Emperia.Weapons
 			item.rare = 2;
 			item.UseSound = SoundID.Item11;
 			item.autoReuse = true;
-			item.shoot = 10; //idk why but all the guns in the vanilla source have this
+			item.shoot = 632; //idk why but all the guns in the vanilla source have this
 			item.shootSpeed = 20f;
-			item.useAmmo = AmmoID.Bullet;
+			//item.useAmmo = AmmoID.Bullet;
 		}
 
 		
@@ -41,7 +41,7 @@ namespace Emperia.Weapons
 		}
 
 		
-		public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
+		/*public override bool Shoot(Player player, ref Vector2 position, ref float speedX, ref float speedY, ref int type, ref int damage, ref float knockBack)
 		{
 			if (type == ProjectileID.Bullet) 
 			{
@@ -53,7 +53,7 @@ namespace Emperia.Weapons
 				position += muzzleOffset;
 			}
 			return true; 
-		}
+		}*/
 		public override Vector2? HoldoutOffset()
 		{
 			return new Vector2(10, 0);

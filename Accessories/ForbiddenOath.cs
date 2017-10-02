@@ -7,14 +7,14 @@ using Terraria.ID;
 using Emperia;
 using Terraria.ModLoader;
 
-namespace Emperia.Accessories.WaterRelic
+namespace Emperia.Accessories
 {
-    public class WR1 : ModItem
+    public class ForbiddenOath : ModItem
     {
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Shard of Dominion");
-			Tooltip.SetDefault("Pressing a hotkey will allow you to prolong death \nFor the next 6 seconds you will take normal damage but not die. \n Cooldown of one minute");
+			DisplayName.SetDefault("Forbidden Oath");
+			Tooltip.SetDefault("While under 20% max life, you will recieve 10 life every 8 seconds");
 		}
         public override void SetDefaults()
         {
@@ -26,7 +26,7 @@ namespace Emperia.Accessories.WaterRelic
         }
         public override void UpdateAccessory(Player player, bool hideVisual)
         {
-			player.GetModPlayer<MyPlayer>(mod).Dominion = true;
+			player.GetModPlayer<MyPlayer>(mod).forbiddenOath = true;
 		
         }
     }
