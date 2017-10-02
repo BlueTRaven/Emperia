@@ -48,7 +48,7 @@ namespace Emperia.Bosses.Inquisitor
         public override void AI()
         {
             npc.TargetClosest(true);
-            Player player = Main.player[(int)npc.ai[0]];
+            Player player = Main.player[npc.target];
 			int num250 = Dust.NewDust(new Vector2(npc.position.X - npc.velocity.X, npc.position.Y - npc.velocity.Y), npc.width, npc.height, 5, (float)(npc.direction * 2), 0f, 158, new Color(53f, 67f, 253f), 1.3f);
 			Main.dust[num250].noGravity = true;
 			Main.dust[num250].velocity *= 0f;

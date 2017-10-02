@@ -93,9 +93,9 @@ namespace Emperia.Bosses.Inquisitor
 		
             if (npc.ai[3] == 0)
             {
-                NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, mod.NPCType<SorrowMask>(), ai0: player.whoAmI);
-                NPC.NewNPC((int)npc.Center.X + 20, (int)npc.Center.Y, mod.NPCType<AgonyMask>(), ai0: player.whoAmI);
-                npc.ai[3] = 0;
+                NPC.NewNPC((int)npc.Center.X - 20, (int)npc.Center.Y, mod.NPCType<SorrowMask>(), ai0: player.whoAmI, ai1: npc.whoAmI);
+                NPC.NewNPC((int)npc.Center.X + 20, (int)npc.Center.Y, mod.NPCType<AgonyMask>(), ai0: player.whoAmI, ai1: npc.whoAmI);
+                npc.ai[3] = 1;
             }
 
 			else if (npc.ai[3] == 1)
