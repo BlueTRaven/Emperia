@@ -50,6 +50,7 @@ namespace Emperia
 		public int noDeathTimer = 0;
 		public int dominionCooldown = 0;
 		public int OathCooldown = 480;
+		public static int playerHealthFrac = 4;
 		int damageCount = 0;
 		int counter = 0;
 
@@ -82,6 +83,25 @@ namespace Emperia
         public override void PostUpdate()
         {
 			int playerLifeThreshold = player.statLifeMax2 / 5;
+			int playerLifeThreshold2 = (player.statLifeMax2 / 4) * 3;
+			int playerLifeThreshold3 = (player.statLifeMax2 / 4) * 2;
+			int playerLifeThreshold4 = (player.statLifeMax2 / 4) * 1;
+			if (player.statLife <= playerLifeThreshold4)
+			{
+				playerHealthFrac = 1;
+			}
+			if (player.statLife > playerLifeThreshold4 && player.statLife <= playerLifeThreshold3)
+			{
+				playerHealthFrac = 2;
+			}
+			if (player.statLife > playerLifeThreshold3 && player.statLife <= playerLifeThreshold2)
+			{
+				playerHealthFrac = 3;
+			}
+			if (player.statLife > playerLifeThreshold2)
+			{
+				playerHealthFrac = 4;
+			}
 			dominionCooldown--;
 			if (forbiddenOath && player.statLife <= playerLifeThreshold)
 			{

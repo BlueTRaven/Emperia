@@ -6,7 +6,7 @@ using Terraria.Graphics.Shaders;
 using Terraria.ID;
 using Terraria.ModLoader;
 
-namespace Emperia.Weapons   //where is located
+namespace Emperia.Weapons.Marbite   //where is located
 {
     public class GraniteSword : ModItem
     {

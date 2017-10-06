@@ -2,13 +2,14 @@
 using Terraria;
 using Terraria.ID;
 using Terraria.ModLoader;
-
+using Emperia;
 namespace Emperia
 {
     public class NPCsGlobal: GlobalNPC
     {
 		public bool customdebuff = false;
 		public bool customdebuff2 = false;
+		public bool duskDebuff = false;
 		public bool ConsumeDark = false;
 		public bool Plague = false;
 		public bool Immolate = false;
@@ -53,7 +54,11 @@ namespace Emperia
                     damage = 1;  // this is the damage dealt when the npc lose health
       
             }
-			
+			if (duskDebuff)
+			{
+				 npc.lifeRegen -= 50;  
+				 damage = MyPlayer.playerHealthFrac;
+			}
 			if (ConsumeDark)
             {
                 npc.lifeRegen -= 25;

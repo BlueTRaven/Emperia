@@ -5,23 +5,23 @@ using System.Diagnostics;
 using Microsoft.Xna.Framework;
 using Terraria.ModLoader;
 
-namespace Emperia.Weapons
+namespace Emperia.Weapons.Marbite
 {
-    public class GraniteBow : ModItem
+    public class MarbleBow : ModItem
     {
 		public override void SetStaticDefaults()
 		{
-			DisplayName.SetDefault("Granite Bow");
+			DisplayName.SetDefault("Marble Bow");
 		}
         public override void SetDefaults()
         {
-            item.damage = 9;
+            item.damage = 7;
             item.noMelee = true;
             item.ranged = true;
             item.width = 69;
             item.height = 40;
-            item.useTime = 27;
-            item.useAnimation = 27;
+            item.useTime = 22;
+            item.useAnimation = 22;
             item.useStyle = 5;
             item.shoot = 3;
             item.useAmmo = ItemID.WoodenArrow;
@@ -35,7 +35,7 @@ namespace Emperia.Weapons
         public override void AddRecipes()
     {
         ModRecipe recipe = new ModRecipe(mod);
-        recipe.AddIngredient(null, "GraniteBar", 8);
+        recipe.AddIngredient(null, "MarbleBar", 8);
         recipe.AddTile(TileID.Anvils);
         recipe.SetResult(this);
         recipe.AddRecipe();

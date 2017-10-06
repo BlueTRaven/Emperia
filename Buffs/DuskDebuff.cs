@@ -19,7 +19,7 @@ namespace Emperia.Buffs
 
         public override void Update(NPC npc, ref int buffIndex)
         {
-            npc.GetGlobalNPC<NPCsGlobal>(mod).customdebuff = true;    //this tells the game to use the public bool customdebuff from NPCsINFO.cs
+            npc.GetGlobalNPC<NPCsGlobal>(mod).duskDebuff = true;    //this tells the game to use the public bool customdebuff from NPCsINFO.cs
             int num1 = Dust.NewDust(npc.position, npc.width, npc.height, DustID.PinkFlame);    //this is the dust/flame effect that will apear on npc or player if is hit by this buff   
             Main.dust[num1].scale = 2.9f; //the dust scale , the higher is the value the large is the dust
             Main.dust[num1].velocity *= 3f; //the dust velocity

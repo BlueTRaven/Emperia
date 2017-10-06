@@ -63,7 +63,7 @@ namespace Emperia.Bosses.Inquisitor
                 counter++;
             } else if (counter > 300) {
                 counter = -1;
-            } else { counter++; 
+            } else { counter++; }
         }
 
         private void SmoothMoveToPosition(Vector2 toPosition, float addSpeed, float maxSpeed, float slowRange = 64, float slowBy = .95f)

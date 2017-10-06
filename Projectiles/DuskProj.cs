@@ -47,7 +47,7 @@ namespace Emperia.Projectiles
 		}
 		public override void OnHitNPC(NPC target, int damage, float knockback, bool crit)
         {
-			 target.AddBuff(mod.BuffType("DuskDebuff"), 120);
+			 target.AddBuff(mod.BuffType("DuskDebuff"), 240);
 
 		}
     }
