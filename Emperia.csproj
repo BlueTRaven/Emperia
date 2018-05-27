@@ -9,9 +9,10 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Emperia</RootNamespace>
     <AssemblyName>Emperia</AssemblyName>
-    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -64,7 +65,6 @@
     <Compile Include="Bloom\NPCs\FloralWalker1.cs" />
     <Compile Include="Bloom\NPCs\Petal.cs" />
     <Compile Include="Bloom\PoisonFlower.cs" />
-    <Compile Include="Bosses\AntBoss.cs" />
     <Compile Include="Bosses\Inquisitor\AgonyMask.cs" />
     <Compile Include="Bosses\Inquisitor\DEPuppet.cs" />
     <Compile Include="Bosses\Inquisitor\DryadPuppet.cs" />
@@ -89,9 +89,8 @@
     <Compile Include="Buffs\ChestnutBuff.cs" />
     <Compile Include="Buffs\Consuming_Darkness.cs" />
     <Compile Include="Buffs\CursedSkull.cs" />
-    <Compile Include="Buffs\Drowning.cs" />
     <Compile Include="Buffs\DuskBuff.cs" />
-    <Compile Include="Buffs\Enchanted.cs" />
+    <Compile Include="Buffs\DuskDebuff.cs" />
     <Compile Include="Buffs\Immolate.cs" />
     <Compile Include="Buffs\IndigoBuff.cs" />
     <Compile Include="Buffs\Magmad.cs" />
@@ -108,7 +107,6 @@
     <Compile Include="Buffs\VermillionBuff.cs" />
     <Compile Include="Buffs\VermillionDebuff.cs" />
     <Compile Include="Buffs\Wandering_Plague.cs" />
-    <Compile Include="Buffs\WoodSpiritBuff.cs" />
     <Compile Include="Drops\EssenceDrop.cs" />
     <Compile Include="Dusts\Blue.cs" />
     <Compile Include="Dusts\CursedFlame.cs" />
@@ -120,17 +118,13 @@
     <Compile Include="Emperia.cs" />
     <Compile Include="EmperialWorld.cs" />
     <Compile Include="FishPlayer.cs" />
-    <Compile Include="GlobalNPC1.cs" />
     <Compile Include="Gores\ExampleTreeFX.cs" />
-    <Compile Include="Inquisitor.cs" />
     <Compile Include="Items\CanyonSpawn.cs" />
     <Compile Include="Items\ChestnutSeeds.cs" />
     <Compile Include="Items\CursedSkull.cs" />
     <Compile Include="Items\EnchantedTable.cs" />
     <Compile Include="Items\Rocket.cs" />
     <Compile Include="Items\RottenMushroom.cs" />
-    <Compile Include="Items\RuinedChest.cs" />
-    <Compile Include="Items\RuinedKey.cs" />
     <Compile Include="Items\Sets\Seashell\SeashellBlade.cs" />
     <Compile Include="Items\Sets\Seashell\SeashellChestplate.cs" />
     <Compile Include="Items\Sets\Seashell\SeashellLeggings.cs" />
@@ -143,20 +137,21 @@
     <Compile Include="Items\TForest\DayHook.cs" />
     <Compile Include="Items\TForest\MagnificentMushroom.cs" />
     <Compile Include="Items\ZaWarudo.cs" />
-    <Compile Include="Materials\DesertBar.cs" />
+    <Compile Include="Materials\AetherBar.cs" />
+    <Compile Include="Materials\Aetherium.cs" />
+    <Compile Include="Materials\BehexedLeaf.cs" />
+    <Compile Include="Materials\EvilTwig.cs" />
+    <Compile Include="Materials\FaerieSpark.cs" />
+    <Compile Include="Materials\Fungoo.cs" />
     <Compile Include="Materials\GraniteBar.cs" />
-    <Compile Include="Materials\GraniteCore.cs" />
-    <Compile Include="Materials\HellEssence.cs" />
-    <Compile Include="Materials\IceShard.cs" />
     <Compile Include="Materials\MarbleBar.cs" />
-    <Compile Include="Materials\MarbleCore.cs" />
-    <Compile Include="Materials\OceanEssence.cs" />
-    <Compile Include="Materials\SkyBar.cs" />
-    <Compile Include="Materials\VultureFeather.cs" />
-    <Compile Include="Minions\WoodSpirit\WoodSpirit.cs" />
+    <Compile Include="Materials\NocturnalShell.cs" />
+    <Compile Include="Materials\Prism.cs" />
+    <Compile Include="Materials\ShardOfAnimation.cs" />
+    <Compile Include="Materials\ShardOfPossesion.cs" />
+    <Compile Include="Materials\YuleLog.cs" />
     <Compile Include="MyPlayer.cs" />
     <Compile Include="NPCsGLOBAL.cs" />
-    <Compile Include="NPCsInfo.cs" />
     <Compile Include="NPCs\Bloom\VenusTrap.cs" />
     <Compile Include="NPCs\TreeMan.cs" />
     <Compile Include="NPCs\Twilight\Dwindler.cs" />
@@ -180,9 +175,7 @@
     <Compile Include="Projectiles\DragonWepProj\StormBolt.cs" />
     <Compile Include="Projectiles\DragonWepProj\VoidSpike.cs" />
     <Compile Include="Projectiles\EbonFire.cs" />
-    <Compile Include="Projectiles\EnchantedArrow.cs" />
     <Compile Include="Projectiles\EnchantedBall.cs" />
-    <Compile Include="Projectiles\EnchantedBullet.cs" />
     <Compile Include="Projectiles\EnchantedChakram.cs" />
     <Compile Include="Projectiles\EnchantedCrystal.cs" />
     <Compile Include="Projectiles\ExplodeMushroom.cs" />
@@ -212,7 +205,6 @@
     <Compile Include="Projectiles\MagmaFlame.cs" />
     <Compile Include="Projectiles\MagmaYoyoProjectile.cs" />
     <Compile Include="Projectiles\MartianBlast.cs" />
-    <Compile Include="Projectiles\MechaLaser.cs" />
     <Compile Include="Projectiles\MellowSlice.cs" />
     <Compile Include="Projectiles\MushDisc.cs" />
     <Compile Include="Projectiles\MushSpray.cs" />
@@ -233,7 +225,6 @@
     <Compile Include="Projectiles\ShroomGas.cs" />
     <Compile Include="Projectiles\ShroomNade.cs" />
     <Compile Include="Projectiles\ShroomNade2.cs" />
-    <Compile Include="Projectiles\SmallLaser.cs" />
     <Compile Include="Projectiles\SolarBlast.cs" />
     <Compile Include="Projectiles\SoulReaper.cs" />
     <Compile Include="Projectiles\Spore.cs" />
@@ -241,17 +232,30 @@
     <Compile Include="Projectiles\Stalagmite\StalagmiteSmall.cs" />
     <Compile Include="Projectiles\VibranceProj.cs" />
     <Compile Include="Projectiles\WateryBoom.cs" />
-    <Compile Include="Projectiles\YoyoProjectile.cs" />
     <Compile Include="RofIncrease.cs" />
     <Compile Include="StormRuneMage.cs" />
     <Compile Include="StormRuneSummon.cs" />
-    <Compile Include="Tiles\RuinedChest.cs" />
+    <Compile Include="Tiles\AbyssalStone.cs" />
+    <Compile Include="Tiles\Aetherium.cs" />
+    <Compile Include="Tiles\CanyonRock.cs" />
+    <Compile Include="Tiles\EnchantedTable.cs" />
+    <Compile Include="Tiles\herbs\SunsoakedChestnut.cs" />
+    <Compile Include="Tiles\MagnificentMushroom.cs" />
+    <Compile Include="Tiles\TFLeaf.cs" />
+    <Compile Include="Tiles\TFWood.cs" />
+    <Compile Include="Tiles\TwiChest.cs" />
+    <Compile Include="Tiles\TwilightFlora1.cs" />
+    <Compile Include="Tiles\TwilightFlora2.cs" />
+    <Compile Include="Tiles\TwilightFlora3.cs" />
+    <Compile Include="Tiles\TwilightFlora4.cs" />
+    <Compile Include="Tiles\TwilightFlora5.cs" />
+    <Compile Include="Tiles\TwilightGrass.cs" />
+    <Compile Include="Tiles\TwilightTree.cs" />
+    <Compile Include="Tiles\TwilightTreeSap.cs" />
     <Compile Include="Tools\GraniteHamaxe.cs" />
     <Compile Include="Tools\GranitePickaxe.cs" />
     <Compile Include="Tools\MarbleHamaxe.cs" />
     <Compile Include="Tools\MarblePickaxe.cs" />
-    <Compile Include="Tools\SkyHamaxe.cs" />
-    <Compile Include="Tools\SkyPick.cs" />
     <Compile Include="Town\Weaponsmith.cs" />
     <Compile Include="Utility\RandomHelper.cs" />
     <Compile Include="Utility\VectorHelper.cs" />
@@ -259,33 +263,17 @@
     <Compile Include="Weapons\BulbousStaff.cs" />
     <Compile Include="Weapons\CursedThrower.cs" />
     <Compile Include="Weapons\DesertKhopesh.cs" />
-    <Compile Include="Weapons\DesertStaff.cs" />
     <Compile Include="Weapons\EbonflameRepeater.cs" />
     <Compile Include="Weapons\EnchantedChakram.cs" />
-    <Compile Include="Weapons\Enchanted\EnchantedArrow.cs" />
-    <Compile Include="Weapons\Enchanted\EnchantedBow.cs" />
-    <Compile Include="Weapons\Enchanted\EnchantedBullet.cs" />
-    <Compile Include="Weapons\Enchanted\EnchantedGun.cs" />
-    <Compile Include="Weapons\Enchanted\EnchantedSword.cs" />
     <Compile Include="Weapons\FleshRenderer.cs" />
     <Compile Include="Weapons\GoblinGlaive.cs" />
-    <Compile Include="Weapons\GraniteBow.cs" />
-    <Compile Include="Weapons\GraniteSword.cs" />
-    <Compile Include="Weapons\MarbleSword.cs" />
-    <Compile Include="Weapons\MechaBlade.cs" />
     <Compile Include="Weapons\OceanicBlade.cs" />
-    <Compile Include="Weapons\SkyBlade.cs" />
     <Compile Include="Weapons\TideStaff.cs" />
-    <Compile Include="Weapons\TreeSpiritStaff.cs" />
-    <Compile Include="Weapons\Enchanted\EnchantedInfo.cs" />
     <Compile Include="WorldMethods.cs" />
     <Compile Include="WorldStuff\TwilightScreenShaderData.cs" />
     <Compile Include="WorldStuff\ZaWARUDO.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="BigText">
-      <HintPath>..\BigText\bin\Debug\BigText.dll</HintPath>
-    </Reference>
     <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>C:\Windows\Microsoft.NET\assembly\GAC_32\Microsoft.Xna.Framework\v4.0_4.0.0.0__842cf8be1de50553\Microsoft.Xna.Framework.dll</HintPath>
@@ -304,7 +292,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="Terraria">
-      <HintPath>C:\Program Files (x86)\Steam\steamapps\common\terraria\Terraria.exe</HintPath>
+      <HintPath>T:\Steam\steamapps\common\Terraria\Terraria.exe</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -388,6 +376,7 @@
     <Content Include="Buffs\Consuming_Darkness.png" />
     <Content Include="Buffs\CursedSkull.png" />
     <Content Include="Buffs\DuskBuff.png" />
+    <Content Include="Buffs\DuskDebuff.png" />
     <Content Include="Buffs\Immolate.png" />
     <Content Include="Buffs\IndigoBuff.png" />
     <Content Include="Buffs\Magmad.png" />
@@ -441,6 +430,19 @@
     <Content Include="Items\TForest\DayHookProjectile.png" />
     <Content Include="Items\TForest\MagnificentMushroom.png" />
     <Content Include="Items\ZaWarudo.png" />
+    <Content Include="Materials\AetherBar.png" />
+    <Content Include="Materials\Aetherium.png" />
+    <Content Include="Materials\BehexedLeaf.png" />
+    <Content Include="Materials\EvilTwig.png" />
+    <Content Include="Materials\FaerieSpark.png" />
+    <Content Include="Materials\Fungoo.png" />
+    <Content Include="Materials\GraniteBar.png" />
+    <Content Include="Materials\MarbleBar.png" />
+    <Content Include="Materials\NocturnalShell.png" />
+    <Content Include="Materials\Prism.png" />
+    <Content Include="Materials\ShardOfAnimation.png" />
+    <Content Include="Materials\ShardOfPossesion.png" />
+    <Content Include="Materials\YuleLog.png" />
     <Content Include="NPCs\Bloom\VenusTrap.png" />
     <Content Include="NPCs\TreeMan.png" />
     <Content Include="NPCs\Twilight\Buzzer.png" />
@@ -527,6 +529,28 @@
     <Content Include="Sounds\Music\MUSHOR.mp3" />
     <Content Include="Sounds\Music\TForest.mp3" />
     <Content Include="The_Inquisitor.png" />
+    <Content Include="Tiles\AbyssalStone.png" />
+    <Content Include="Tiles\Aetherium.png" />
+    <Content Include="Tiles\altar.png" />
+    <Content Include="Tiles\CanyonRock.png" />
+    <Content Include="Tiles\Elder_Wood_Block-item.png" />
+    <Content Include="Tiles\EnchantedTable.png" />
+    <Content Include="Tiles\herbs\SunsoakedChestnut.png" />
+    <Content Include="Tiles\MagnificentMushroom.png" />
+    <Content Include="Tiles\TFLeaf.png" />
+    <Content Include="Tiles\TFOre.png" />
+    <Content Include="Tiles\TFWood.png" />
+    <Content Include="Tiles\TwiChest.png" />
+    <Content Include="Tiles\TwilightFlora1.png" />
+    <Content Include="Tiles\TwilightFlora2.png" />
+    <Content Include="Tiles\TwilightFlora3.png" />
+    <Content Include="Tiles\TwilightFlora4.png" />
+    <Content Include="Tiles\TwilightFlora5.png" />
+    <Content Include="Tiles\TwilightGrass.png" />
+    <Content Include="Tiles\TwilightTree.png" />
+    <Content Include="Tiles\TwilightTreeSap.png" />
+    <Content Include="Tiles\TwilightTree_Branches.png" />
+    <Content Include="Tiles\TwilightTree_Top.png" />
     <Content Include="Town\Weaponsmith.png" />
     <Content Include="Town\Weaponsmith_Head.png" />
     <Content Include="whitePixel.png" />
@@ -534,9 +558,11 @@
   <ItemGroup>
     <Folder Include="bin\Debug\" />
     <Folder Include="bin\Release\" />
+    <Folder Include="Minions\WoodSpirit\" />
+    <Folder Include="Weapons\Enchanted\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>"C:\Program Files (x86)\Steam\steamapps\common\terraria\Terraria.exe" -build "$(ProjectDir)\" -eac "$(TargetPath)"</PostBuildEvent>
+    <PostBuildEvent>"T:\Steam\steamapps\common\Terraria\Terraria.exe" -build "$(ProjectDir)\" -eac "$(TargetPath)"</PostBuildEvent>
   </PropertyGroup>
 </Project>

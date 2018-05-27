@@ -148,7 +148,7 @@ namespace Emperia
 		public override void UpdateBiomes()
 		{
 			ZoneTwilight = (EmperialWorld.twilightTiles > 50);
-			ZoneCanyon = (EmperialWorld.CanyonTiles > 100);
+			ZoneCanyon = (EmperialWorld.canyonTiles > 100);
 		}
 		public override void UpdateBiomeVisuals()
 		{
